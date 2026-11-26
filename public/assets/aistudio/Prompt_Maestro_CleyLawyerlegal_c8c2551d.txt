@@ -1,0 +1,930 @@
+PROMPT MAESTRO — ACTUALIZACIÓN INTEGRAL DEL PROYECTO CLEYLAWYERLEGAL
+
+1. INSTRUCCIÓN PRINCIPAL: MODIFICAR EL PROYECTO EXISTENTE
+
+Trabaja directamente sobre el proyecto React que ya está creado en
+Google AI Studio.
+
+NO crees un proyecto nuevo. NO reconstruyas el diseño desde cero. NO
+cambies la identidad visual aprobada. NO reemplaces el logotipo
+original. NO cambies la paleta de colores. NO cambies la tipografía. NO
+elimines secciones que ya están correctamente diseñadas.
+
+Tu trabajo consiste en actualizar, ampliar, optimizar y conectar toda la
+información existente para convertir el proyecto actual en un sitio web
+jurídico profesional, completo, persuasivo, funcional y optimizado para
+posicionamiento orgánico.
+
+Antes de modificar el código:
+
+1.  Analiza toda la estructura actual del proyecto.
+2.  Identifica sus componentes, páginas, rutas, estilos y
+    funcionalidades.
+3.  Conserva los componentes visuales existentes.
+4.  Identifica la información ficticia o provisional que debe
+    sustituirse.
+5.  Reutiliza los componentes y estilos existentes siempre que sea
+    posible.
+6.  Implementa las nuevas páginas y funcionalidades sin alterar el
+    diseño aprobado.
+
+La prioridad absoluta es conservar la apariencia original de
+CleyLawyerlegal y mejorar su contenido, arquitectura, navegación,
+experiencia de usuario y funcionamiento.
+
+------------------------------------------------------------------------
+
+2. IDENTIDAD PROFESIONAL OFICIAL
+
+Nombre comercial: CleyLawyerlegal.
+
+Profesional: Licdo. Cley González Caballero.
+
+Profesión: Abogado litigante.
+
+Idoneidad profesional: 5551.
+
+Formación académica: Licenciatura en Derecho y Ciencias Políticas.
+Universidad Autónoma de Chiriquí (UNACHI).
+
+Experiencia: Más de 26 años en servicios profesionales.
+
+Área principal: Derecho Penal y fase de cumplimiento de la pena.
+
+Eslogan oficial: Criterio jurídico, respaldo firme.
+
+Mensaje principal: Defensa penal con rigor y discreción.
+
+Mensaje secundario: Desde Chiriquí para todo Panamá.
+
+Dirección profesional
+
+Avenida Segunda, Edificio Don José, primer alto, oficina número 2.
+
+David, provincia de Chiriquí, Panamá.
+
+Mostrar esta dirección en: - Página de contacto. - Pie de página. -
+Sección de ubicación. - Datos estructurados locales. - Información de
+contacto. - Enlaces de navegación hacia mapas.
+
+No inventar coordenadas ni ubicación cartográfica. Obtenerlas mediante
+verificación de la dirección antes de publicar un mapa.
+
+Contacto oficial
+
+WhatsApp: +507 6497-1468.
+
+Enlace: https://wa.me/50764971468
+
+Correo profesional: cleylawyerlegal@outlook.com
+
+No publicar el correo privado.
+
+Redes sociales
+
+Reservar estratégicamente los espacios de Instagram y Facebook.
+
+Mostrar sus iconos originales en color negro, con diseño minimalista y
+profesional, sobre fondos blancos.
+
+Ubicaciones: - Encabezado superior. - Pie de página. - Sección de
+contacto.
+
+Los enlaces permanecerán pendientes de configuración.
+
+IMPORTANTE: No inventar perfiles ni enlaces. Los iconos pueden mostrarse
+como elementos visuales inactivos hasta que se proporcionen las
+direcciones oficiales.
+
+------------------------------------------------------------------------
+
+3. CONSERVACIÓN ESTRICTA DEL DISEÑO
+
+Mantener exactamente la identidad visual ya aprobada.
+
+Colores oficiales:
+
+Negro principal: #080808. Negro secundario: #171717. Dorado: #D99A19.
+Dorado claro: #F2C45D. Blanco: #FFFFFF. Gris claro: #EEEEEE. Gris
+oscuro: #555555.
+
+Tipografía: - Encabezados: serif elegante de estilo editorial de lujo. -
+Nombre de marca: serif de alto contraste. - Textos: sans-serif
+moderna. - Descripciones: legibles, amplias y profesionales.
+
+Logotipo: Utilizar el isotipo original de Lady Justice con la media luna
+dorada.
+
+Prohibido: - Modificar el isotipo. - Cambiar sus proporciones. -
+Sustituirlo por otro símbolo. - Cambiar los colores originales. -
+Introducir colores nuevos. - Cambiar el diseño de las tarjetas
+originales. - Convertir la web en una plantilla jurídica genérica.
+
+Conservar el equilibrio visual entre blanco, negro y dorado.
+
+------------------------------------------------------------------------
+
+4. NUEVA ARQUITECTURA DE SERVICIOS: 17 ÁREAS
+
+Esta es una de las modificaciones más importantes.
+
+Cada servicio debe tener su propia página individual.
+
+No quiero que las 17 áreas sean simples tarjetas que solamente muestran
+una descripción.
+
+Quiero que cada tarjeta sea completamente interactiva y que, al hacer
+clic, abra su correspondiente subpágina.
+
+Cada subpágina debe contener:
+
+1.  Encabezado visual propio.
+2.  Título grande, llamativo y persuasivo.
+3.  Imagen profesional vertical 3:4.
+4.  Descripción introductoria.
+5.  Explicación detallada del servicio.
+6.  Situaciones en las que una persona puede necesitar asistencia
+    jurídica.
+7.  Servicios concretos que se ofrecen.
+8.  Importancia de contar con asesoría jurídica.
+9.  Preguntas frecuentes.
+10. Llamada a la acción.
+11. Formulario de consulta conectado a WhatsApp.
+12. Botón dinámico para regresar a la página anterior.
+13. Enlaces hacia servicios relacionados.
+14. Información de contacto.
+15. SEO específico de la subpágina.
+
+FAMILIA 1. DEFENSA PENAL Y GARANTÍAS
+
+01. Derecho Penal y Administrativo
+
+Título principal: DEFENSA PENAL CON FIRMEZA, ESTRATEGIA Y COMPROMISO.
+
+Descripción: Cuando una persona enfrenta una investigación o un proceso
+penal, cada decisión puede tener consecuencias importantes. Una defensa
+jurídica responsable comienza con el análisis de los hechos, la
+evaluación de las actuaciones procesales y la protección de las
+garantías fundamentales.
+
+Servicios: - Defensa técnica en el Sistema Penal Acusatorio. -
+Asistencia ante aprehensiones. - Audiencias de control de aprehensión. -
+Medidas cautelares personales. - Audiencias de imputación. - Juicio
+oral. - Recursos procesales. - Asesoría en fase de cumplimiento de la
+pena. - Procedimientos administrativos sancionatorios.
+
+Palabra clave principal: Abogado penalista en Panamá.
+
+Palabras clave secundarias: Abogado penalista en David, abogado penal en
+Chiriquí, defensa penal Panamá, Sistema Penal Acusatorio.
+
+02. Derecho Constitucional
+
+Título: LA PROTECCIÓN DE TUS DERECHOS FUNDAMENTALES ES ESENCIAL.
+
+Descripción: La Constitución reconoce garantías fundamentales que deben
+ser respetadas por las autoridades. Cuando estos derechos resultan
+afectados, existen mecanismos jurídicos para solicitar su protección
+conforme al ordenamiento panameño.
+
+Servicios: - Amparo de garantías constitucionales. - Hábeas corpus. -
+Acciones de inconstitucionalidad. - Hábeas data.
+
+Palabra clave: Abogado constitucionalista en Panamá.
+
+03. Derecho Contencioso-Administrativo
+
+Título: DEFIENDE TUS DERECHOS FRENTE A LAS DECISIONES ADMINISTRATIVAS.
+
+Descripción: Las decisiones de las instituciones públicas pueden
+producir efectos importantes sobre los derechos de las personas y las
+empresas. Su revisión requiere un análisis técnico de la actuación
+administrativa y de los mecanismos de impugnación disponibles.
+
+Servicios: - Recursos de reconsideración y apelación. - Acciones de
+plena jurisdicción. - Demandas de nulidad. - Reclamos en contratación
+pública.
+
+Palabra clave: Abogado contencioso-administrativo en Panamá.
+
+FAMILIA 2. PERSONA, FAMILIA Y PATRIMONIO
+
+04. Derecho Civil
+
+Título: PROTEGE TUS DERECHOS Y TU PATRIMONIO.
+
+Descripción: Los conflictos civiles pueden afectar bienes, obligaciones,
+contratos y relaciones patrimoniales. Una orientación jurídica adecuada
+permite evaluar las alternativas legales y actuar con fundamento.
+
+Servicios: - Demandas y contestaciones. - Cobro de créditos. -
+Reclamaciones de daños y perjuicios. - Mediación y conciliación.
+
+Palabra clave: Abogado civil en Chiriquí.
+
+05. Derecho de Familia
+
+Título: SOLUCIONES JURÍDICAS CON RESPONSABILIDAD Y SENSIBILIDAD HUMANA.
+
+Descripción: Los asuntos familiares requieren un tratamiento profesional
+que combine conocimiento jurídico, prudencia y atención a las
+circunstancias particulares de cada familia.
+
+Servicios: - Divorcios. - Pensiones alimenticias. - Guarda, crianza y
+régimen de visitas. - Liquidación del régimen patrimonial matrimonial. -
+Medidas de protección.
+
+Palabra clave: Abogado de familia en David Panamá.
+
+06. Sucesiones
+
+Título: PROTEGE EL PATRIMONIO FAMILIAR Y GARANTIZA LA SEGURIDAD
+JURÍDICA.
+
+Descripción: Los procesos sucesorios requieren determinar derechos
+hereditarios, revisar documentación y gestionar las actuaciones
+necesarias para la distribución legal de los bienes.
+
+Servicios: - Apertura de sucesiones. - Impugnación de testamentos. -
+Administración de masa hereditaria. - Planificación sucesoria.
+
+Palabra clave: Abogado de sucesiones en Panamá.
+
+FAMILIA 3. EMPRESA, BIENES Y CONTRATOS
+
+07. Mercantil, sociedades y fundaciones de interés privado
+
+Título: CONSTRUYE Y PROTEGE TUS ESTRUCTURAS EMPRESARIALES.
+
+Descripción: La organización jurídica de una empresa requiere documentos
+adecuados, cumplimiento normativo y una estructura que responda a sus
+objetivos comerciales y patrimoniales.
+
+Servicios: - Constitución y mantenimiento de sociedades. - Fundaciones
+de interés privado. - Reformas societarias. - Poderes y dignatarios. -
+Cumplimiento corporativo.
+
+Palabra clave: Abogado corporativo en Panamá.
+
+08. Seguros, bienes raíces y contratos
+
+Título: SEGURIDAD JURÍDICA PARA TUS BIENES Y NEGOCIOS.
+
+Descripción: Las operaciones inmobiliarias y contractuales requieren
+revisión documental, análisis de obligaciones y prevención de riesgos
+jurídicos antes de asumir compromisos.
+
+Servicios: - Compraventas de inmuebles. - Debida diligencia
+inmobiliaria. - Reclamaciones ante aseguradoras. - Contratos de
+arrendamiento. - Contratos de construcción.
+
+Palabra clave: Abogado inmobiliario en Chiriquí.
+
+09. Notarial y registral
+
+Título: DOCUMENTOS BIEN ESTRUCTURADOS, TRÁMITES CON SEGURIDAD JURÍDICA.
+
+Descripción: La correcta formalización e inscripción de documentos
+permite dar cumplimiento a los requisitos legales correspondientes y
+proteger los intereses de las partes.
+
+Servicios: - Escrituras públicas. - Inscripciones y correcciones
+registrales. - Poderes notariales. - Apostilla de documentos.
+
+Palabra clave: Abogado notarial y registral en Panamá.
+
+10. Propiedad intelectual
+
+Título: PROTEGE LO QUE HAS CREADO. DEFIENDE EL VALOR DE TU MARCA.
+
+Descripción: Las marcas, obras y creaciones representan activos
+importantes. Su protección jurídica ayuda a prevenir usos indebidos y a
+establecer derechos sobre los activos intelectuales.
+
+Servicios: - Registro de marcas. - Vigilancia y renovación. - Defensa
+frente a infracciones. - Contratos de licencia.
+
+Palabra clave: Registro de marcas en Panamá.
+
+11. Redacción de documentos jurídicos
+
+Título: CADA PALABRA IMPORTA. CADA CLÁUSULA CUENTA.
+
+Descripción: Un documento jurídico bien elaborado permite establecer
+obligaciones, responsabilidades y condiciones claras. La revisión
+profesional ayuda a reducir ambigüedades y riesgos contractuales.
+
+Servicios: - Contratos a la medida. - Revisión y negociación
+contractual. - Dictámenes jurídicos. - Documentos para trámites
+internacionales.
+
+Palabra clave: Redacción de contratos jurídicos en Panamá.
+
+12. Procesos judiciales y práctica forense
+
+Título: PREPARACIÓN, ESTRATEGIA Y ACTUACIÓN JURÍDICA.
+
+Descripción: La litigación exige preparación, conocimiento procesal y
+análisis de las pruebas. Cada procedimiento debe abordarse conforme a
+sus particularidades y al marco jurídico aplicable.
+
+Servicios: - Preparación de audiencias y alegatos. - Medidas cautelares
+patrimoniales. - Recursos ordinarios y extraordinarios. - Seguimiento de
+expedientes.
+
+Palabra clave: Abogado litigante en Panamá.
+
+FAMILIA 4. TRABAJO, MIGRACIÓN Y TERRITORIO
+
+13. Derecho Laboral
+
+Título: CONOCE Y DEFIENDE TUS DERECHOS LABORALES.
+
+Descripción: Las relaciones laborales generan derechos y obligaciones
+tanto para trabajadores como para empleadores. La orientación jurídica
+permite evaluar situaciones contractuales y resolver controversias
+conforme a la legislación laboral.
+
+Servicios: - Asesoría patronal. - Defensa del trabajador. - Negociación
+de liquidaciones. - Auditoría laboral.
+
+Palabra clave: Abogado laboral en Chiriquí.
+
+14. Derecho Migratorio
+
+Título: TU PROYECTO DE VIDA EN PANAMÁ MERECE SEGURIDAD JURÍDICA.
+
+Descripción: Los procedimientos migratorios requieren identificar la
+categoría correspondiente, reunir los documentos exigidos y cumplir los
+requisitos establecidos por las autoridades competentes.
+
+Servicios: - Residencias. - Permisos de trabajo. - Naturalización
+panameña. - Renovaciones y cambios de categoría migratoria.
+
+Palabra clave: Abogado migratorio en Panamá.
+
+15. Derecho Agrario
+
+Título: PROTEGE LEGALMENTE TU TIERRA Y TU PATRIMONIO RURAL.
+
+Descripción: Los asuntos relacionados con tierras rurales, posesión,
+titulación y conflictos agrarios requieren revisar antecedentes,
+documentos y procedimientos ante las autoridades correspondientes.
+
+Servicios: - Titulación y adjudicación. - Defensa de posesión. -
+Contratos agrarios. - Procesos ante juzgados agrarios.
+
+Palabra clave: Abogado agrario en Chiriquí.
+
+16. Derecho Ambiental
+
+Título: SEGURIDAD JURÍDICA PARA TUS PROYECTOS Y EL ENTORNO.
+
+Descripción: El cumplimiento de las obligaciones ambientales es
+fundamental para el desarrollo responsable de proyectos y actividades
+económicas. Su análisis jurídico permite identificar requisitos y
+riesgos regulatorios.
+
+Servicios: - Permisos y concesiones. - Evaluación de riesgos legales. -
+Defensa en procesos sancionatorios. - Asesoría a proyectos.
+
+Palabra clave: Abogado ambiental en Panamá.
+
+FAMILIA 5. FORMACIÓN PROFESIONAL
+
+17. Formación y ejercicio profesional en Panamá
+
+Título: FORTALECE TU EJERCICIO PROFESIONAL CON FUNDAMENTO JURÍDICO Y
+ÉTICO.
+
+Descripción: El ejercicio de la abogacía requiere preparación,
+responsabilidad y conocimiento de las normas que regulan la profesión.
+La formación jurídica y la orientación profesional contribuyen al
+desarrollo de una práctica responsable.
+
+Servicios: - Orientación para obtener la idoneidad. - Talleres de
+litigación. - Consultoría ética. - Acompañamiento profesional.
+
+Palabra clave: Ejercicio de la abogacía en Panamá.
+
+IMPORTANTE: Mantener estas 17 áreas y su organización. No presentarlas
+como especialidades acreditadas ni atribuir experiencia específica no
+verificada. Su publicación comercial debe respetar la confirmación
+profesional del abogado.
+
+------------------------------------------------------------------------
+
+5. SUBPÁGINAS INDIVIDUALES PARA CADA SERVICIO
+
+Cada una de las 17 áreas debe tener su propia URL.
+
+Ejemplos:
+
+/derecho-penal/ /derecho-constitucional/
+/derecho-contencioso-administrativo/ /derecho-civil/ /derecho-familia/
+/sucesiones/ /sociedades-y-fundaciones/
+/seguros-bienes-raices-contratos/ /notarial-registral/
+/propiedad-intelectual/ /redaccion-documentos-juridicos/
+/procesos-judiciales/ /derecho-laboral/ /derecho-migratorio/
+/derecho-agrario/ /derecho-ambiental/ /formacion-profesional/
+
+Las rutas deben ser únicas, cortas y descriptivas.
+
+Todas las tarjetas de servicios deben enlazar correctamente a su
+subpágina.
+
+No permitir botones sin destino.
+
+No crear enlaces ficticios.
+
+------------------------------------------------------------------------
+
+6. DISEÑO VISUAL DE LAS SUBPÁGINAS
+
+Conservar la identidad visual de la página principal.
+
+Cada subpágina tendrá:
+
+-   Encabezado negro o blanco según la composición original.
+-   Título principal grande y elegante.
+-   Acentos dorados.
+-   Imagen ilustrativa vertical 3:4.
+-   Texto amplio y fácil de leer.
+-   Tarjetas de servicios.
+-   Preguntas frecuentes.
+-   Formulario de contacto.
+-   Botones dorados de WhatsApp.
+-   Navegación hacia otras áreas.
+
+Imágenes
+
+Generar o incorporar imágenes realistas, profesionales y específicas
+para cada área jurídica.
+
+Formato obligatorio: 3:4 vertical.
+
+Calidad: Alta resolución, aspecto editorial premium, iluminación
+cinematográfica natural y composición profesional.
+
+No utilizar la misma imagen para las 17 áreas.
+
+Cada imagen debe representar visualmente el servicio correspondiente.
+
+Ejemplos:
+
+Derecho Penal: Abogado en un entorno de litigación penal, sala de
+audiencias moderna y documentos jurídicos.
+
+Derecho Constitucional: Constitución, arquitectura institucional y
+símbolos de justicia.
+
+Derecho Civil: Documentación contractual, asesoría y patrimonio.
+
+Derecho de Familia: Entorno familiar profesional y humano, sin
+dramatizaciones.
+
+Sucesiones: Documentos testamentarios, patrimonio y planificación
+hereditaria.
+
+Sociedades: Reunión empresarial y documentación corporativa.
+
+Bienes raíces: Propiedades, contratos y revisión inmobiliaria.
+
+Notarial: Escrituras, documentos y escritorio profesional.
+
+Propiedad intelectual: Identidad de marca, creación y protección de
+derechos.
+
+Redacción jurídica: Documentos, contratos y trabajo profesional de
+escritorio.
+
+Procesos judiciales: Sala de audiencias y preparación de expedientes.
+
+Laboral: Entorno profesional de trabajo y asesoría laboral.
+
+Migratorio: Documentación migratoria y entorno internacional.
+
+Agrario: Terrenos rurales y documentación de propiedad.
+
+Ambiental: Paisajes naturales y documentación de cumplimiento ambiental.
+
+Formación profesional: Biblioteca jurídica, libros y formación
+académica.
+
+Las imágenes deben ser realistas, no caricaturas ni ilustraciones
+infantiles.
+
+No utilizar fotografías que sugieran casos reales, clientes reales o
+resultados judiciales.
+
+Optimizar todas las imágenes para carga rápida y accesibilidad.
+
+------------------------------------------------------------------------
+
+7. FORMULARIO DIRECTO A WHATSAPP EN CADA SUBPÁGINA
+
+Cada una de las 17 subpáginas debe incluir su propio formulario de
+contacto.
+
+El formulario debe identificar automáticamente el área jurídica desde la
+que se envía.
+
+Campos:
+
+1.  Nombre completo.
+2.  Número de teléfono.
+3.  Provincia.
+4.  Servicio jurídico seleccionado automáticamente.
+5.  Breve descripción opcional.
+6.  Preferencia de contacto.
+7.  Casilla obligatoria de aceptación de la política de privacidad.
+
+Botón: ENVIAR CONSULTA POR WHATSAPP.
+
+Al presionarlo, abrir:
+
+https://wa.me/50764971468
+
+El mensaje debe generarse automáticamente con esta estructura:
+
+“Hola, Licdo. Cley González Caballero.
+
+Deseo solicitar información sobre el servicio de [NOMBRE DEL SERVICIO].
+
+Nombre: [NOMBRE]. Teléfono: [TELÉFONO]. Provincia: [PROVINCIA].
+Consulta: [MENSAJE].
+
+Agradezco su atención.”
+
+Codificar correctamente el mensaje mediante URL encoding.
+
+Utilizar target seguro para abrir WhatsApp.
+
+No incluir datos judiciales sensibles, documentos, información de
+terceros ni detalles confidenciales en el mensaje automático.
+
+Mostrar una advertencia de privacidad antes de enviar.
+
+No afirmar que el mensaje fue recibido hasta que el usuario complete el
+envío en WhatsApp.
+
+Si WhatsApp no está disponible, ofrecer como alternativa el correo
+profesional.
+
+El formulario general también debe funcionar.
+
+------------------------------------------------------------------------
+
+8. BOTÓN DINÁMICO PARA RETORNAR
+
+Incorporar un botón flotante y elegante de retorno en todas las
+subpáginas.
+
+Texto: VOLVER A SERVICIOS.
+
+Comportamiento:
+
+-   Si el usuario llega desde la página de servicios, regresar a esa
+    página.
+-   Si llega desde una búsqueda externa, dirigirlo a
+    /areas-de-practica/.
+-   Si está en una sección interna, permitir regresar al inicio de la
+    página.
+-   Mantener una navegación coherente en móviles.
+-   Evitar que el botón tape el formulario o los elementos importantes.
+
+También incorporar un indicador de progreso de lectura en la parte
+superior de la página.
+
+Este indicador debe funcionar como una línea de tiempo visual que avanza
+conforme el usuario recorre el contenido.
+
+Añadir una navegación de migas de pan:
+
+Inicio > Áreas de práctica > Servicio correspondiente.
+
+------------------------------------------------------------------------
+
+9. LÍNEA DE TIEMPO Y NAVEGACIÓN GENERAL
+
+Implementar una experiencia de navegación continua.
+
+En las páginas largas, incluir:
+
+-   Indicador de progreso de lectura.
+-   Navegación por secciones.
+-   Botón volver arriba.
+-   Migas de pan.
+-   Enlaces hacia servicios relacionados.
+-   Acceso permanente a WhatsApp.
+
+La línea de progreso debe ser delgada, dorada y elegante.
+
+No debe alterar el diseño original ni ocupar demasiado espacio.
+
+------------------------------------------------------------------------
+
+10. SEO AVANZADO Y POSICIONAMIENTO ORGÁNICO
+
+Optimizar todo el proyecto para que los buscadores puedan encontrar,
+comprender e indexar correctamente cada página.
+
+Objetivo: Posicionar CleyLawyerlegal en búsquedas relacionadas con
+servicios jurídicos en David, Chiriquí y Panamá.
+
+Aplicar SEO técnico, SEO local, SEO semántico y optimización para
+motores de respuestas.
+
+Cada página debe tener:
+
+-   Título SEO único.
+-   Meta descripción propia.
+-   Un H1 principal.
+-   Jerarquía H2 y H3.
+-   URL descriptiva.
+-   Palabra clave principal.
+-   Palabras clave secundarias.
+-   Contenido original.
+-   Enlaces internos.
+-   Enlaces externos oficiales cuando corresponda.
+-   Texto alternativo de imágenes.
+-   Datos estructurados adecuados.
+-   Canonical URL.
+-   Open Graph.
+-   Twitter Cards.
+-   Breadcrumbs.
+
+SEO local
+
+Utilizar de manera natural:
+
+Cley González Caballero. CleyLawyerlegal. Abogado en David. Abogado en
+Chiriquí. Abogado en Panamá. Avenida Segunda. Edificio Don José. Derecho
+Penal en Panamá. Fase de cumplimiento de pena.
+
+Crear información de ubicación consistente en todas las páginas.
+
+No repetir palabras clave de manera artificial.
+
+Posicionamiento nacional
+
+Desarrollar contenido relevante para búsquedas en todo Panamá.
+
+No crear páginas vacías para provincias ni ciudades.
+
+Cada contenido debe ofrecer información real y útil.
+
+SEO técnico
+
+Implementar:
+
+-   sitemap.xml.
+-   robots.txt.
+-   Canonical.
+-   Redirecciones cuando correspondan.
+-   URLs limpias.
+-   Imágenes WebP o AVIF.
+-   Lazy loading.
+-   Optimización Core Web Vitals.
+-   Schema.org.
+-   Indexación correcta.
+-   Google Search Console.
+-   Bing Webmaster Tools.
+-   Open Graph.
+-   Enlaces internos.
+-   Enlaces externos institucionales.
+
+Datos estructurados
+
+Utilizar únicamente datos reales:
+
+Person. LegalService. BreadcrumbList. Service.
+
+FAQPage solo cuando corresponda y cumpla las políticas vigentes de
+Google.
+
+Incluir dirección profesional verificada:
+
+Avenida Segunda, Edificio Don José, primer alto, oficina número 2,
+David, Chiriquí, Panamá.
+
+No inventar reseñas, valoraciones, acreditaciones ni resultados.
+
+No garantizar posiciones en Google ni en otros motores de búsqueda.
+
+Optimizar para facilitar la indexación y mejorar las oportunidades de
+posicionamiento orgánico.
+
+------------------------------------------------------------------------
+
+11. FORMULARIO GENERAL DE CONTACTO
+
+La página de contacto debe contener:
+
+Título: ESTAMOS PARA ESCUCHAR SU CONSULTA.
+
+Subtítulo: Cada situación jurídica merece atención y análisis
+profesional.
+
+Mostrar:
+
+Licdo. Cley González Caballero. Idoneidad 5551. Avenida Segunda,
+Edificio Don José, primer alto, oficina número 2. David, Chiriquí,
+Panamá. WhatsApp: +507 6497-1468. Correo: cleylawyerlegal@outlook.com.
+
+Incluir mapa únicamente después de verificar la ubicación exacta.
+
+Incluir botones funcionales:
+
+Llamar. WhatsApp. Enviar correo. Cómo llegar.
+
+Los formularios deben contar con validación, protección contra spam y
+tratamiento adecuado de datos personales.
+
+------------------------------------------------------------------------
+
+12. PREGUNTAS FRECUENTES
+
+Crear preguntas frecuentes específicas para cada una de las 17 áreas.
+
+Ejemplos para Derecho Penal:
+
+¿Qué debo hacer si un familiar es aprehendido? ¿Qué sucede durante una
+audiencia de control de aprehensión? ¿Qué son las medidas cautelares?
+¿Cuándo puedo solicitar orientación jurídica? ¿Qué ocurre durante la
+fase de cumplimiento?
+
+Ejemplos para fase de cumplimiento:
+
+¿Qué es un Juez de Cumplimiento? ¿Qué es la libertad condicional? ¿Cómo
+se realiza el cómputo de una pena? ¿Qué son las penas sustitutivas? ¿Qué
+requisitos legales pueden aplicar?
+
+Las respuestas deben basarse en legislación panameña vigente.
+
+No inventar plazos, requisitos ni artículos legales.
+
+No prometer resultados.
+
+Cada respuesta debe contener una explicación clara y una llamada a
+solicitar evaluación individual.
+
+------------------------------------------------------------------------
+
+13. FOOTER PROFESIONAL
+
+Conservar el footer del diseño original.
+
+Actualizar sus datos:
+
+CleyLawyerlegal.
+
+Criterio jurídico, respaldo firme.
+
+Licdo. Cley González Caballero.
+
+Abogado litigante.
+
+Idoneidad profesional 5551.
+
+Avenida Segunda, Edificio Don José, primer alto, oficina número 2.
+
+David, Chiriquí, Panamá.
+
+WhatsApp +507 6497-1468.
+
+cleylawyerlegal@outlook.com.
+
+Incluir:
+
+Inicio. Sobre el abogado. Áreas de práctica. Derecho Penal. Fase de
+Cumplimiento. Contacto. Política de privacidad. Aviso legal. Términos y
+condiciones. Política de cookies.
+
+Instagram y Facebook con iconos negros y enlaces pendientes.
+
+Copyright: Generar automáticamente el año actual.
+
+------------------------------------------------------------------------
+
+14. SEGURIDAD Y CUMPLIMIENTO JURÍDICO
+
+Aplicar las normas pertinentes de protección de datos personales en
+Panamá.
+
+Referencias principales:
+
+Ley 81 de 2019. Decreto Ejecutivo 285 de 2021.
+
+Preparar:
+
+Política de privacidad. Aviso legal. Términos y condiciones. Política de
+cookies. Información sobre tratamiento de datos.
+
+No activar rastreadores no esenciales antes del consentimiento
+correspondiente.
+
+No almacenar consultas confidenciales en bases de datos públicas.
+
+No exponer claves API.
+
+No utilizar información de clientes en ejemplos públicos.
+
+El contenido jurídico debe ser revisado por el profesional antes de
+publicarse.
+
+------------------------------------------------------------------------
+
+15. RESPONSIVE DESIGN Y EXPERIENCIA MÓVIL
+
+Optimizar toda la web para:
+
+Teléfonos Android. iPhone. Tablets. Laptops. Monitores de escritorio.
+
+En móviles:
+
+-   Menú compacto y funcional.
+-   Tipografía legible.
+-   Botones grandes.
+-   Tarjetas adaptables.
+-   Imágenes 3:4 correctamente recortadas.
+-   Formularios fáciles de completar.
+-   WhatsApp accesible.
+-   Botón de retorno visible.
+-   Nada debe desbordar horizontalmente.
+
+Mantener la elegancia del diseño de escritorio en todas las
+resoluciones.
+
+------------------------------------------------------------------------
+
+16. PRUEBAS Y CONTROL DE CALIDAD
+
+Antes de terminar:
+
+1.  Revisar todas las rutas.
+2.  Comprobar las 17 subpáginas.
+3.  Comprobar cada tarjeta de servicio.
+4.  Probar los formularios.
+5.  Verificar el mensaje generado para WhatsApp.
+6.  Verificar enlaces de correo y teléfono.
+7.  Comprobar la navegación de retorno.
+8.  Comprobar el indicador de progreso.
+9.  Revisar el funcionamiento del menú móvil.
+10. Verificar las imágenes 3:4.
+11. Revisar la carga de imágenes.
+12. Comprobar metadatos SEO.
+13. Validar datos estructurados.
+14. Revisar errores de consola.
+15. Comprobar accesibilidad.
+16. Verificar que no haya enlaces rotos.
+17. Comprobar que no exista información ficticia.
+
+No entregar botones decorativos que aparenten funcionar.
+
+No simular envíos exitosos.
+
+No declarar una función terminada sin probarla.
+
+------------------------------------------------------------------------
+
+17. INSTRUCCIÓN FINAL OBLIGATORIA
+
+Realiza todas estas modificaciones sobre el proyecto que ya existe.
+
+No quiero una propuesta visual. No quiero una imagen de muestra. No
+quiero una maqueta estática. No quiero solamente código de ejemplo.
+
+Quiero que modifiques directamente los archivos del proyecto existente y
+entregues una web funcional.
+
+Mantén el diseño visual original de CleyLawyerlegal.
+
+Amplía las 17 áreas de práctica mediante subpáginas individuales.
+
+Cada subpágina debe tener su propio contenido, imagen 3:4, SEO,
+formulario directo a WhatsApp, navegación de retorno y servicios
+relacionados.
+
+Conecta todos los botones y enlaces.
+
+Actualiza la dirección profesional.
+
+Deja las redes sociales preparadas, con iconos negros, pero sin enlaces
+ficticios.
+
+Optimiza la web para búsquedas orgánicas locales y nacionales.
+
+No elimines nada que ya esté bien diseñado.
+
+Si necesitas modificar un componente existente, hazlo preservando sus
+estilos y su identidad.
+
+Si necesitas crear componentes nuevos, reutiliza los colores,
+tipografías, espaciados y reglas visuales existentes.
+
+Primero analiza el proyecto. Después modifica. Finalmente prueba.
+
+RESULTADO ESPERADO: CLEYLAWYERLEGAL — UNA PLATAFORMA JURÍDICA
+PROFESIONAL, ELEGANTE, COMPLETA, RESPONSIVA, PERSUASIVA Y FUNCIONAL PARA
+TODO PANAMÁ.

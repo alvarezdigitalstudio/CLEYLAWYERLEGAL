@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background-color: #080808;
+        color: #ffffff;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .canvas {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        background:
+          radial-gradient(circle at 22% 50%, rgba(217, 154, 25, 0.14) 0%, rgba(8, 8, 8, 0) 48%),
+          linear-gradient(135deg, #080808 0%, #0e0e0e 58%, #171717 100%);
+        padding: 44px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* Architectural outer frame */
+      .frame-outer {
+        position: absolute;
+        inset: 22px;
+        border: 1px solid rgba(217, 154, 25, 0.34);
+        pointer-events: none;
+      }
+
+      .frame-corner-tl {
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        width: 44px;
+        height: 44px;
+        border-top: 2px solid #d99a19;
+        border-left: 2px solid #d99a19;
+        pointer-events: none;
+      }
+
+      .frame-corner-br {
+        position: absolute;
+        bottom: 22px;
+        right: 22px;
+        width: 44px;
+        height: 44px;
+        border-bottom: 2px solid #d99a19;
+        border-right: 2px solid #d99a19;
+        pointer-events: none;
+      }
+
+      .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 10px 0 10px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .eyebrow {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #f2c45d;
+      }
+
+      .location-tag {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(238, 238, 238, 0.78);
+      }
+
+      .main-grid {
+        display: flex;
+        align-items: center;
+        gap: 54px;
+        padding: 0 10px;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Crisp white emblem circle so the original black + gold isotipo has 100% contrast */
+      .emblem-ring {
+        width: 292px;
+        height: 292px;
+        border-radius: 50%;
+        padding: 10px;
+        border: 1.5px solid rgba(217, 154, 25, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: rgba(23, 23, 23, 0.65);
+      }
+
+      .emblem-surface {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+      }
+
+      .emblem-surface img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .brand-name {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 68px;
+        font-weight: 700;
+        line-height: 1.04;
+        letter-spacing: -0.015em;
+        color: #ffffff;
+      }
+
+      .gold-rule {
+        width: 96px;
+        height: 3px;
+        background: linear-gradient(90deg, #d99a19 0%, #f2c45d 100%);
+        margin: 20px 0 18px 0;
+      }
+
+      .slogan {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 31px;
+        font-weight: 600;
+        line-height: 1.25;
+        color: #f2c45d;
+        letter-spacing: 0.01em;
+      }
+
+      .credentials {
+        margin-top: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .cred-primary {
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 0.005em;
+      }
+
+      .cred-secondary {
+        font-size: 18px;
+        font-weight: 400;
+        color: rgba(238, 238, 238, 0.86);
+        line-height: 1.4;
+      }
+
+      .bottom-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 10px 4px 10px;
+        border-top: 1px solid rgba(217, 154, 25, 0.28);
+        position: relative;
+        z-index: 2;
+      }
+
+      .bottom-items {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #eeeeee;
+        letter-spacing: 0.04em;
+      }
+
+      .dot {
+        width: 5px;
+        height: 5px;
+        background-color: #d99a19;
+        display: inline-block;
+      }
+
+      .domain {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #f2c45d;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas">
+      <div class="frame-outer"></div>
+      <div class="frame-corner-tl"></div>
+      <div class="frame-corner-br"></div>
+
+      <header class="top-bar">
+        <span class="eyebrow">Firma Jurídica · Idoneidad 5551</span>
+        <span class="location-tag">David, Chiriquí · República de Panamá</span>
+      </header>
+
+      <section class="main-grid">
+        <div class="emblem-ring">
+          <div class="emblem-surface">
+            <img
+              src="../public/assets/aistudio/cleylawyerlegal-isotipo-transparente_1__fa77ffc5.png"
+              alt="Isotipo oficial de CleyLawyerLegal"
+            />
+          </div>
+        </div>
+
+        <div class="brand-col">
+          <h1 class="brand-name">CleyLawyerLegal</h1>
+          <div class="gold-rule"></div>
+          <p class="slogan">Criterio jurídico, respaldo firme</p>
+
+          <div class="credentials">
+            <p class="cred-primary">Licdo. Cley González Caballero · Abogado Litigante</p>
+            <p class="cred-secondary">
+              Defensa penal con rigor y discreción · Fase de cumplimiento de la pena
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="bottom-bar">
+        <div class="bottom-items">
+          <span>17 Áreas Jurídicas</span>
+          <span class="dot"></span>
+          <span>Más de 26 años de ejercicio</span>
+          <span class="dot"></span>
+          <span>+507 6497-1468</span>
+        </div>
+        <span class="domain">cleylawyerlegal.com</span>
+      </footer>
+    </main>
+  </body>
+</html>

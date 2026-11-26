@@ -1,0 +1,363 @@
+'use client';
+
+import { useId, useState } from 'react';
+import Link from 'next/link';
+import {
+  AlertCircle,
+  ExternalLink,
+  Mail,
+  MessageCircle,
+  ShieldAlert,
+} from 'lucide-react';
+import { BRAND_INFO, PANAMA_PROVINCES } from '@/lib/legal-data';
+import {
+  buildMailtoUrl,
+  buildWhatsAppMessage,
+  buildWhatsAppUrl,
+  validateWhatsAppConsultation,
+  type ContactPreference,
+  type WhatsAppConsultationInput,
+  type WhatsAppFieldErrors,
+} from '@/lib/legal-logic';
+
+interface WhatsAppConsultationFormProps {
+  serviceName: string;
+}
+
+export function WhatsAppConsultationForm({
+  serviceName,
+}: WhatsAppConsultationFormProps) {
+  const formId = useId();
+  const [formData, setFormData] = useState<WhatsAppConsultationInput>({
+    fullName: '',
+    phone: '',
+    province: 'Chiriquí',
+    serviceName,
+    message: '',
+    contactPreference: 'WhatsApp',
+    privacyAccepted: false,
+    honeypot: '',
+  });
+  const [errors, setErrors] = useState<WhatsAppFieldErrors>({});
+  const [preparedLink, setPreparedLink] = useState<{
+    whatsappUrl: string;
+    mailtoUrl: string;
+    previewMessage: string;
+  } | null>(null);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const validation = validateWhatsAppConsultation({
+      ...formData,
+      serviceName,
+    });
+    if (!validation.valid) {
+      setErrors(validation.errors);
+      setPreparedLink(null);
+      return;
+    }
+
+    setErrors({});
+    const payload = {
+      serviceName,
+      fullName: formData.fullName,
+      phone: formData.phone,
+      province: formData.province,
+      message: formData.message,
+    };
+    setPreparedLink({
+      whatsappUrl: buildWhatsAppUrl(payload),
+      mailtoUrl: buildMailtoUrl({
+        ...payload,
+        email: BRAND_INFO.email,
+      }),
+      previewMessage: buildWhatsAppMessage(payload),
+    });
+  };
+
+  return (
+    <div className="border border-[#EEEEEE] bg-[#FFFFFF] p-6 sm:p-8 space-y-6">
+      <div>
+        <h2 className="font-serif text-2xl font-semibold text-[#080808]">
+          Solicitar orientación sobre {serviceName}
+        </h2>
+        <p className="mt-2 text-sm text-[#555555] leading-relaxed">
+          Complete los datos para preparar su consulta directa dirigida al{' '}
+          <span className="font-medium text-[#080808]">
+            {BRAND_INFO.lawyerName}
+          </span>
+          .
+        </p>
+      </div>
+
+      {/* Privacy notice before sending */}
+      <div className="bg-[#EEEEEE]/70 border border-[#555555]/20 p-4 flex items-start gap-3 text-xs text-[#171717] leading-relaxed">
+        <ShieldAlert
+          className="w-4 h-4 text-[#D99A19] shrink-0 mt-0.5"
+          aria-hidden="true"
+        />
+        <p>
+          <strong>Aviso de confidencialidad:</strong> No incluya datos judiciales
+          sensibles, documentos adjuntos, información de terceros ni detalles
+          confidenciales en el mensaje automático.
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} noValidate className="space-y-4">
+        {/* Anti-spam honeypot */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor={`${formId}-hp`}>Sitio web</label>
+          <input
+            id={`${formId}-hp`}
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.honeypot || ''}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, honeypot: e.target.value }))
+            }
+          />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor={`${formId}-name`}
+              className="block text-sm font-medium text-[#080808] mb-1.5"
+            >
+              Nombre completo
+            </label>
+            <input
+              id={`${formId}-name`}
+              name="fullName"
+              type="text"
+              value={formData.fullName}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, fullName: e.target.value }))
+              }
+              placeholder="Ej. Carlos Mendoza"
+              aria-invalid={Boolean(errors.fullName)}
+              className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] placeholder:text-[#555555]/70 focus:border-[#D99A19]"
+            />
+            {errors.fullName && (
+              <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
+                <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+                <span>{errors.fullName}</span>
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor={`${formId}-phone`}
+              className="block text-sm font-medium text-[#080808] mb-1.5"
+            >
+              Número de teléfono
+            </label>
+            <input
+              id={`${formId}-phone`}
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, phone: e.target.value }))
+              }
+              placeholder="+507 6000-0000"
+              aria-invalid={Boolean(errors.phone)}
+              className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] placeholder:text-[#555555]/70 focus:border-[#D99A19]"
+            />
+            {errors.phone && (
+              <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
+                <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+                <span>{errors.phone}</span>
+              </p>
+            )}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor={`${formId}-province`}
+              className="block text-sm font-medium text-[#080808] mb-1.5"
+            >
+              Provincia
+            </label>
+            <select
+              id={`${formId}-province`}
+              name="province"
+              value={formData.province}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, province: e.target.value }))
+              }
+              aria-invalid={Boolean(errors.province)}
+              className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] focus:border-[#D99A19]"
+            >
+              {PANAMA_PROVINCES.map((prov) => (
+                <option key={prov} value={prov}>
+                  {prov}
+                </option>
+              ))}
+            </select>
+            {errors.province && (
+              <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
+                <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+                <span>{errors.province}</span>
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor={`${formId}-preference`}
+              className="block text-sm font-medium text-[#080808] mb-1.5"
+            >
+              Preferencia de contacto
+            </label>
+            <select
+              id={`${formId}-preference`}
+              name="contactPreference"
+              value={formData.contactPreference}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  contactPreference: e.target.value as ContactPreference,
+                }))
+              }
+              className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] focus:border-[#D99A19]"
+            >
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Llamada telefónica">Llamada telefónica</option>
+              <option value="Correo electrónico">Correo electrónico</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor={`${formId}-service`}
+            className="block text-sm font-medium text-[#080808] mb-1.5"
+          >
+            Servicio jurídico seleccionado
+          </label>
+          <input
+            id={`${formId}-service`}
+            name="serviceName"
+            type="text"
+            readOnly
+            value={serviceName}
+            className="w-full px-4 py-3 bg-[#EEEEEE]/70 border border-[#555555]/20 text-sm font-medium text-[#080808]"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor={`${formId}-message`}
+            className="block text-sm font-medium text-[#080808] mb-1.5"
+          >
+            Breve descripción (opcional)
+          </label>
+          <textarea
+            id={`${formId}-message`}
+            name="message"
+            rows={3}
+            value={formData.message}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, message: e.target.value }))
+            }
+            placeholder="Indique brevemente el motivo general de su consulta sin datos confidenciales..."
+            className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] placeholder:text-[#555555]/70 focus:border-[#D99A19]"
+          />
+        </div>
+
+        <div>
+          <label className="flex items-start gap-3 text-xs sm:text-sm text-[#171717] cursor-pointer">
+            <input
+              type="checkbox"
+              checked={formData.privacyAccepted}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  privacyAccepted: e.target.checked,
+                }))
+              }
+              aria-invalid={Boolean(errors.privacyAccepted)}
+              className="mt-1 w-4 h-4 accent-[#D99A19] shrink-0"
+            />
+            <span>
+              He leído y acepto la{' '}
+              <Link
+                href="/politica-de-privacidad"
+                className="font-semibold text-[#080808] underline underline-offset-4 hover:text-[#D99A19]"
+              >
+                Política de Privacidad
+              </Link>{' '}
+              y el tratamiento de mis datos conforme a la Ley 81 de 2019.
+            </span>
+          </label>
+          {errors.privacyAccepted && (
+            <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
+              <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+              <span>{errors.privacyAccepted}</span>
+            </p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#D99A19] text-[#FFFFFF] text-sm font-semibold tracking-wide hover:bg-[#080808] transition-colors duration-200 cursor-pointer"
+        >
+          <MessageCircle className="w-4 h-4" aria-hidden="true" />
+          <span>ENVIAR CONSULTA POR WHATSAPP</span>
+        </button>
+      </form>
+
+      {/* Honest WhatsApp handoff panel */}
+      {preparedLink && (
+        <div
+          role="region"
+          aria-live="polite"
+          aria-label="Enlace preparado para envío en WhatsApp"
+          className="border border-[#D99A19] bg-[#EEEEEE]/40 p-5 space-y-4"
+        >
+          <div className="space-y-1">
+            <h3 className="font-serif text-lg font-semibold text-[#080808]">
+              Mensaje preparado para envío
+            </h3>
+            <p className="text-xs sm:text-sm text-[#555555]">
+              La consulta no se habrá enviado hasta que usted confirme el envío
+              directamente dentro de WhatsApp o utilice el correo profesional
+              como alternativa.
+            </p>
+          </div>
+
+          <pre className="whitespace-pre-wrap font-sans text-xs bg-[#FFFFFF] border border-[#EEEEEE] p-3.5 text-[#171717] leading-relaxed">
+            {preparedLink.previewMessage}
+          </pre>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={preparedLink.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#D99A19] text-[#FFFFFF] text-sm font-semibold hover:bg-[#080808] transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" aria-hidden="true" />
+              <span>Abrir WhatsApp ahora</span>
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+            </a>
+
+            <a
+              href={preparedLink.mailtoUrl}
+              className="inline-flex items-center gap-2 px-5 py-3 border border-[#080808] bg-[#FFFFFF] text-[#080808] text-sm font-semibold hover:bg-[#080808] hover:text-[#FFFFFF] transition-colors"
+            >
+              <Mail className="w-4 h-4 text-[#D99A19]" aria-hidden="true" />
+              <span>Enviar por correo ({BRAND_INFO.email})</span>
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

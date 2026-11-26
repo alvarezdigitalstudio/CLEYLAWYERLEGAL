@@ -1,0 +1,6 @@
+{
+  "name": "CleyLawyerlegal",
+  "description": "Criterio jurídico, respaldo firme. Firma legal en Panamá dedicada a asesoría legal, consultoría jurídica, representación legal y resolución de conflictos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
