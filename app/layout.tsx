@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import { AnalyticsConsentManager } from '@/components/AnalyticsConsentManager';
+import { FloatingWhatsAppButton } from '@/components/FloatingWhatsAppButton';
 import { getClarityId, getGtmId } from '@/lib/analytics';
 import {
   buildSocialMetadata,
@@ -108,6 +109,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <FloatingWhatsAppButton />
         <AnalyticsConsentManager
           measurementId={gaMeasurementId}
           gtmId={gtmId}

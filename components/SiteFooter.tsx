@@ -14,7 +14,6 @@ export function SiteFooter() {
     { label: 'Sobre el abogado', href: '/#nosotros' },
     { label: 'Áreas de práctica', href: '/areas-de-practica' },
     { label: 'Derecho Penal', href: '/derecho-penal' },
-    { label: 'Fase de Cumplimiento', href: '/derecho-penal#preguntas-frecuentes' },
     { label: 'Contacto', href: '/contacto' },
   ];
 

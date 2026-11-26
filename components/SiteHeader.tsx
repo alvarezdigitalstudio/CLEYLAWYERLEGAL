@@ -17,51 +17,6 @@ export function SiteHeader({ onOpenConsultation }: SiteHeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#FFFFFF]">
-      {/* Top utility bar (desktop & tablet) */}
-      <div className="hidden md:block bg-[#080808] text-[#FFFFFF] border-b border-[#171717]">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6 h-10 flex items-center justify-between gap-4 text-xs">
-          <div className="flex items-center gap-4 lg:gap-6">
-            <a
-              href={BRAND_INFO.phoneHref}
-              onClick={() =>
-                trackSxoEvent('phone_click', {
-                  channel: 'phone',
-                  location: 'header_top_bar',
-                })
-              }
-              className="inline-flex items-center gap-2 text-[#EEEEEE] hover:text-[#F2C45D] transition-colors whitespace-nowrap"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#D99A19]" aria-hidden="true" />
-              <span className="tabular-nums">{BRAND_INFO.phoneDisplay}</span>
-            </a>
-            <a
-              href={BRAND_INFO.emailHref}
-              onClick={() =>
-                trackSxoEvent('email_click', {
-                  channel: 'email',
-                  location: 'header_top_bar',
-                })
-              }
-              className="inline-flex items-center gap-2 text-[#EEEEEE] hover:text-[#F2C45D] transition-colors whitespace-nowrap"
-            >
-              <Mail className="w-3.5 h-3.5 text-[#D99A19]" aria-hidden="true" />
-              <span>{BRAND_INFO.email}</span>
-            </a>
-            <a
-              href={BRAND_INFO.mapsSearchUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#EEEEEE] hover:text-[#F2C45D] transition-colors whitespace-nowrap"
-            >
-              <MapPin className="w-3.5 h-3.5 text-[#D99A19]" aria-hidden="true" />
-              <span>{BRAND_INFO.cityRegionCountry}</span>
-            </a>
-          </div>
-
-          <SocialIconsPending size="sm" includeWhatsApp />
-        </div>
-      </div>
-
       {/* Main navigation bar */}
       <div className="border-b border-[#EEEEEE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between gap-4 lg:gap-8">

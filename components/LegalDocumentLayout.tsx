@@ -4,7 +4,11 @@ import { ReadingProgressBar } from './ReadingProgressBar';
 import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
 import { BRAND_INFO, LEGAL_PAGES_LINKS } from '@/lib/legal-data';
-import { buildLegalPageJsonLdGraph, getSiteUrl } from '@/lib/seo-config';
+import {
+  buildLegalPageJsonLdGraph,
+  getSiteUrl,
+  serializeJsonLd,
+} from '@/lib/seo-config';
 import { BrandLogo } from './BrandLogo';
 
 interface LegalSectionBlock {
@@ -40,7 +44,7 @@ export function LegalDocumentLayout({
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
       <main className="flex-1">

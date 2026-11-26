@@ -14,13 +14,16 @@ import {
   calculateReadingProgress,
   filterBlogArticles,
   filterPracticeAreasByFamily,
+  getFieldVisualState,
   getNextCarouselIndex,
   getPrevCarouselIndex,
   INPUT_LIMITS,
   resolveBackDestination,
   sanitizeUserText,
+  validateGeneralContactField,
   validateGeneralContactForm,
   validateWhatsAppConsultation,
+  validateWhatsAppField,
 } from './legal-logic';
 
 test('PRACTICE_AREAS_17 contains all 17 unique numbered areas with unique slugs', () => {
@@ -119,6 +122,7 @@ test('validateGeneralContactForm validates email, phone, province, message, and 
   });
   assert.equal(invalid.valid, false);
   assert.ok(invalid.errors.email);
+  assert.ok(invalid.errors.phone);
   assert.ok(invalid.errors.message);
   assert.ok(invalid.errors.privacyAccepted);
 
@@ -133,6 +137,59 @@ test('validateGeneralContactForm validates email, phone, province, message, and 
     privacyAccepted: true,
   });
   assert.equal(valid.valid, true);
+});
+
+test('Zod field validators reject malformed emails and non-numeric phone strings', () => {
+  assert.ok(validateGeneralContactField('email', 'usuario@dominio'));
+  assert.ok(validateGeneralContactField('email', 'correo invalido@panama.com'));
+  assert.equal(validateGeneralContactField('email', '  cliente@firma.pa  '), undefined);
+
+  assert.ok(validateGeneralContactField('phone', 'abc-1234567'));
+  assert.ok(validateGeneralContactField('phone', '123456'));
+  assert.ok(validateGeneralContactField('phone', '1234567890123456'));
+  assert.equal(validateGeneralContactField('phone', '+507 (6497) 1468'), undefined);
+  assert.equal(validateWhatsAppField('phone', '6497-1468'), undefined);
+  assert.ok(validateWhatsAppField('phone', 'no-es-telefono'));
+});
+
+test('getFieldVisualState returns neutral before interaction, invalid on error, and valid when clean after typing', () => {
+  assert.equal(
+    getFieldVisualState({ hasInteracted: false, error: undefined, value: '' }),
+    'neutral',
+  );
+  assert.equal(
+    getFieldVisualState({
+      hasInteracted: true,
+      error: 'Ingrese un correo electrónico válido.',
+      value: 'abc',
+    }),
+    'invalid',
+  );
+  assert.equal(
+    getFieldVisualState({
+      hasInteracted: false,
+      error: 'Campo requerido tras envío.',
+      value: '',
+    }),
+    'invalid',
+  );
+  assert.equal(
+    getFieldVisualState({
+      hasInteracted: true,
+      error: undefined,
+      value: 'cliente@firma.pa',
+    }),
+    'valid',
+  );
+  assert.equal(
+    getFieldVisualState({
+      hasInteracted: true,
+      error: undefined,
+      value: '   ',
+      allowEmptyNeutral: true,
+    }),
+    'neutral',
+  );
 });
 
 test('resolveBackDestination routes external visitors to /areas-de-practica and from=servicios to /#servicios', () => {

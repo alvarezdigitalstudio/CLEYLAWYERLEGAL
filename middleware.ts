@@ -9,7 +9,7 @@ const CANONICAL_REDIRECTS: Record<string, string> = {
   '/familia': '/derecho-familia',
   '/laboral': '/derecho-laboral',
   '/migratorio': '/derecho-migratorio',
-  '/corporativo': '/derecho-corporativo-empresas',
+  '/corporativo': '/sociedades-y-fundaciones',
   '/servicios': '/#servicios',
   '/nosotros': '/#nosotros',
   '/blog': '/#blog',
@@ -17,6 +17,20 @@ const CANONICAL_REDIRECTS: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (
+    pathname.startsWith('/assets/aistudio/') &&
+    (pathname.toLowerCase().endsWith('.txt') ||
+      pathname.toLowerCase().includes('prompt_maestro'))
+  ) {
+    return new NextResponse(null, {
+      status: 404,
+      headers: {
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Cache-Control': 'no-store',
+      },
+    });
+  }
 
   const normalizedPath =
     pathname.length > 1 && pathname.endsWith('/')
@@ -48,5 +62,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/|api/|assets/|favicon.ico).*)'],
+  matcher: ['/((?!_next/|api/|assets/|favicon.ico).*)', '/assets/aistudio/:path*'],
 };

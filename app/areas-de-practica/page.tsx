@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ChevronRight, MessageCircle } from 'lucide-react';
+import { ChevronRight, MessageCircle } from 'lucide-react';
+import { PracticeAreaCard } from '@/components/PracticeAreaCard';
 import { ReadingProgressBar } from '@/components/ReadingProgressBar';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteHeader } from '@/components/SiteHeader';
@@ -12,7 +12,7 @@ import {
   PRACTICE_FAMILIES,
 } from '@/lib/legal-data';
 import { PRACTICE_AREA_IMAGES } from '@/lib/practice-images';
-import { buildSocialMetadata, getSiteUrl } from '@/lib/seo-config';
+import { buildSocialMetadata, getSiteUrl, serializeJsonLd } from '@/lib/seo-config';
 
 export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
@@ -80,7 +80,7 @@ export default function PracticeAreasCatalogPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <main className="flex-1">
@@ -166,69 +166,13 @@ export default function PracticeAreasCatalogPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {areasInFamily.map((area) => {
-                    const areaImg = PRACTICE_AREA_IMAGES[area.slug];
-                    return (
-                      <Link
-                        key={area.slug}
-                        href={`/${area.slug}?from=areas`}
-                        className="group border border-[#EEEEEE] bg-[#FFFFFF] flex flex-col justify-between hover:border-[#D99A19] transition-colors"
-                      >
-                        <div>
-                          <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#171717]">
-                            {areaImg && (
-                              <Image
-                                src={areaImg}
-                                alt={area.imageAlt}
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                referrerPolicy="no-referrer"
-                                className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                              />
-                            )}
-                            <div
-                              aria-hidden="true"
-                              className="absolute inset-0 bg-gradient-to-t from-[#080808]/65 via-transparent to-transparent"
-                            />
-                            <span className="absolute bottom-3 left-4 text-xs font-semibold tracking-widest text-[#F2C45D] tabular-nums">
-                              {area.number} · {area.family}
-                            </span>
-                          </div>
-
-                          <div className="p-6 space-y-3">
-                            <h3 className="font-serif text-xl font-semibold text-[#080808]">
-                              {area.name}
-                            </h3>
-                            <p className="text-sm text-[#555555] leading-relaxed line-clamp-3">
-                              {area.introDescription}
-                            </p>
-                            <ul className="pt-3 border-t border-[#EEEEEE] space-y-1.5 text-sm text-[#171717]">
-                              {area.services.slice(0, 3).map((srv) => (
-                                <li
-                                  key={srv}
-                                  className="flex items-start gap-2.5"
-                                >
-                                  <span
-                                    aria-hidden="true"
-                                    className="mt-2 w-1.5 h-1.5 bg-[#D99A19] shrink-0"
-                                  />
-                                  <span>{srv}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-
-                        <div className="px-6 pb-6 pt-4 border-t border-[#EEEEEE] flex items-center justify-between text-sm font-semibold text-[#080808] group-hover:text-[#D99A19] transition-colors">
-                          <span>Explorar guía y WhatsApp</span>
-                          <ArrowRight
-                            className="w-4 h-4 text-[#D99A19]"
-                            aria-hidden="true"
-                          />
-                        </div>
-                      </Link>
-                    );
-                  })}
+                  {areasInFamily.map((area) => (
+                    <PracticeAreaCard
+                      key={area.slug}
+                      area={area}
+                      image={PRACTICE_AREA_IMAGES[area.slug]}
+                    />
+                  ))}
                 </div>
               </section>
             );

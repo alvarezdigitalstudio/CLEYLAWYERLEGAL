@@ -15,14 +15,12 @@ const INDEXNOW_KEY_PATTERN = /^[a-zA-Z0-9-]{8,128}$/;
 export const OG_IMAGE_PATH = '/og-cleylawyerlegal.png';
 export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
-export const OG_IMAGE_ALT =
-  'CleyLawyerLegal. Isotipo oficial y nombre de la firma jurídica.';
-export const TWITTER_IMAGE_ALT =
-  'Identidad visual oficial de CleyLawyerLegal.';
+export const OG_IMAGE_ALT = 'Identidad visual oficial de CleyLawyerLegal';
+export const TWITTER_IMAGE_ALT = 'Identidad visual oficial de CleyLawyerLegal';
 export const HOME_OG_TITLE =
-  'CleyLawyerLegal | Criterio jurídico, respaldo firme';
+  'CleyLawyerLegal | Servicios Legales Profesionales';
 export const HOME_OG_DESCRIPTION =
-  'Licdo. Cley González Caballero, abogado litigante (Idoneidad 5551) en David, Chiriquí. Defensa penal con rigor y discreción, fase de cumplimiento de la pena y 17 áreas jurídicas en todo Panamá.';
+  'Asesoría y representación legal con experiencia, rigor y atención profesional desde David, Chiriquí para todo Panamá.';
 
 export function cleanEnvValue(value: string | undefined): string | null {
   if (!value) return null;
@@ -36,13 +34,14 @@ export type EnvLike = Record<string, string | undefined>;
 
 export function getSiteUrl(env: EnvLike = process.env): string {
   const candidate =
-    cleanEnvValue(env.NEXT_PUBLIC_SITE_URL) ||
-    cleanEnvValue(env.APP_URL) ||
-    DEFAULT_CANONICAL_URL;
+    cleanEnvValue(env.NEXT_PUBLIC_SITE_URL) || DEFAULT_CANONICAL_URL;
 
   try {
     const parsed = new URL(candidate);
-    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+    if (
+      (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') ||
+      parsed.hostname.endsWith('.netlify.app')
+    ) {
       return DEFAULT_CANONICAL_URL;
     }
     return parsed.toString().replace(/\/+$/, '');
@@ -103,8 +102,20 @@ export function buildBingSiteAuthXml(verificationCode: string): string {
   ].join('\n');
 }
 
+export function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
+
 export function getAllPublicPaths(): string[] {
-  const core = ['/', '/areas-de-practica', '/contacto'];
+  const core = [
+    '/',
+    '/areas-de-practica',
+    '/contacto',
+    '/marco-de-proteccion-profesional',
+  ];
   const areas = PRACTICE_AREAS_17.map((area) => `/${area.slug}`);
   const legal = LEGAL_PAGES_LINKS.map((item) => item.href);
   return [...core, ...areas, ...legal];

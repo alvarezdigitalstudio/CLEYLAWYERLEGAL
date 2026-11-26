@@ -6,6 +6,7 @@ import {
   getSiteUrl,
   HOME_OG_DESCRIPTION,
   HOME_OG_TITLE,
+  serializeJsonLd,
 } from '@/lib/seo-config';
 
 export function generateMetadata(): Metadata {
@@ -28,7 +29,7 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <LawFirmPageClient />
     </>

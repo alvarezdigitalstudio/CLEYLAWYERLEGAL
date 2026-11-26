@@ -36,7 +36,7 @@ export default function PoliticaDeCookiesPage() {
           heading: '3. Analítica web opcional (GA4, GTM y Microsoft Clarity) sujeta a consentimiento',
           paragraphs: [
             'Cuando el despacho habilita identificadores oficiales de medición (Google Analytics 4, Google Tag Manager o Microsoft Clarity), la analítica permanece desactivada por defecto (`analytics_storage: denied`) y no se carga ningún script externo de medición hasta que el usuario otorgue su consentimiento expreso mediante el panel de preferencias.',
-            'En caso de aceptar la analítica, la configuración aplica anonimización de dirección IP, mantiene desactivadas las señales publicitarias y aplica enmascaramiento sobre los campos de formularios para evitar el registro de datos personales ingresados. El usuario puede revocar o modificar su elección en cualquier momento desde el enlace de preferencias ubicado en el pie de página o enviando una solicitud conforme a la Ley 81 de 2019 y el Decreto Ejecutivo 285 de 2021 de la República de Panamá.',
+            'En caso de aceptar la analítica, la configuración aplica anonimización de dirección IP, mantiene desactivadas las señales publicitarias y aplica enmascaramiento sobre los campos de formularios para evitar el registro de datos personales ingresados. Su elección se almacena localmente en el navegador junto con la fecha y versión vigente de la política, y puede modificarla o retirarla en cualquier momento desde el enlace «Privacidad y cookies» ubicado en el pie de página o enviando una solicitud conforme a la Ley 81 de 2019 y el Decreto Ejecutivo 285 de 2021 de la República de Panamá.',
           ],
         },
       ]}

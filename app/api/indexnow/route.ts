@@ -9,6 +9,9 @@ import {
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 10;
+const RATE_LIMIT_MAX_KEYS = 1_000;
+const MAX_BODY_BYTES = 65_536;
+const INDEXNOW_TIMEOUT_MS = 8_000;
 const rateLimitBuckets = new Map<string, number[]>();
 
 const NOINDEX_HEADERS = {
@@ -20,9 +23,26 @@ function getClientIdentifier(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     const first = forwarded.split(',')[0]?.trim();
-    if (first) return first;
+    if (first) return first.slice(0, 64);
   }
-  return request.headers.get('x-real-ip')?.trim() || 'unknown';
+  return (request.headers.get('x-real-ip')?.trim() || 'unknown').slice(0, 64);
+}
+
+function pruneRateLimitBuckets(cutoff: number): void {
+  if (rateLimitBuckets.size < RATE_LIMIT_MAX_KEYS) return;
+  for (const [key, timestamps] of rateLimitBuckets.entries()) {
+    const active = timestamps.filter((ts) => ts > cutoff);
+    if (active.length === 0) {
+      rateLimitBuckets.delete(key);
+    } else {
+      rateLimitBuckets.set(key, active);
+    }
+  }
+  while (rateLimitBuckets.size >= RATE_LIMIT_MAX_KEYS) {
+    const oldestKey = rateLimitBuckets.keys().next().value;
+    if (!oldestKey) break;
+    rateLimitBuckets.delete(oldestKey);
+  }
 }
 
 function checkRateLimit(clientKey: string, now = Date.now()): {
@@ -30,6 +50,8 @@ function checkRateLimit(clientKey: string, now = Date.now()): {
   retryAfterSeconds: number;
 } {
   const cutoff = now - RATE_LIMIT_WINDOW_MS;
+  pruneRateLimitBuckets(cutoff);
+
   const existing = (rateLimitBuckets.get(clientKey) || []).filter(
     (ts) => ts > cutoff,
   );
@@ -54,10 +76,13 @@ function verifyAdminToken(authHeader: string | null, expectedSecret: string): bo
     return false;
   }
   const provided = authHeader.slice('Bearer '.length).trim();
-  const a = Buffer.from(provided, 'utf8');
-  const b = Buffer.from(expectedSecret, 'utf8');
-  if (a.length !== b.length) return false;
-  return crypto.timingSafeEqual(a, b);
+  if (!provided) return false;
+  const providedDigest = crypto.createHash('sha256').update(provided, 'utf8').digest();
+  const expectedDigest = crypto
+    .createHash('sha256')
+    .update(expectedSecret, 'utf8')
+    .digest();
+  return crypto.timingSafeEqual(providedDigest, expectedDigest);
 }
 
 export async function POST(request: NextRequest) {
@@ -110,10 +135,24 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const contentLength = Number(request.headers.get('content-length') || '0');
+  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+    return NextResponse.json(
+      { ok: false, error: 'Solicitud demasiado grande.' },
+      { status: 413, headers: NOINDEX_HEADERS },
+    );
+  }
+
   const siteUrl = getSiteUrl();
   let body: { urls?: unknown } = {};
   try {
     const raw = await request.text();
+    if (Buffer.byteLength(raw, 'utf8') > MAX_BODY_BYTES) {
+      return NextResponse.json(
+        { ok: false, error: 'Solicitud demasiado grande.' },
+        { status: 413, headers: NOINDEX_HEADERS },
+      );
+    }
     if (raw.trim().length > 0) {
       body = JSON.parse(raw) as { urls?: unknown };
     }
@@ -150,16 +189,15 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(INDEXNOW_TIMEOUT_MS),
     });
 
-    const responseText = await response.text();
     if (!response.ok) {
       return NextResponse.json(
         {
           ok: false,
           status: response.status,
           error: 'IndexNow rechazó la notificación.',
-          details: responseText.slice(0, 300),
         },
         { status: 502, headers: NOINDEX_HEADERS },
       );

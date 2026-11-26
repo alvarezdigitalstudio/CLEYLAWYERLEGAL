@@ -1,0 +1,471 @@
+PROMPT MAESTRO INTEGRAL — CLEYLAWYERLEGAL.COM
+Implementación controlada de mejoras visuales, funcionales, SEO y compatibilidad
+
+INSTRUCCIÓN DE USO PARA GOOGLE AI STUDIO
+Trabaja sobre el proyecto EXISTENTE. Primero inspecciona el código y presenta un plan de implementación con los archivos exactos que modificarás, el motivo de cada cambio y los riesgos o dependencias detectados. No empieces a editar hasta completar esa inspección y el plan. Después, implementa los cambios aprobados de forma localizada, verifica la compilación y entrega un informe. No reconstruyas el sitio ni sustituyas archivos completos si bastan modificaciones pequeñas.
+
+============================================================
+1. CONTEXTO REAL DEL PROYECTO
+============================================================
+
+El sitio ya está desarrollado y publicado.
+
+- Proyecto desarrollado mediante Google AI Studio.
+- Código almacenado en un repositorio GitHub.
+- Hosting y despliegue mediante Netlify.
+- Dominio oficial: https://cleylawyerlegal.com
+- Dominio comprado y administrado mediante Cloudflare.
+- Dominio conectado con Netlify mediante DNS.
+- Sitio verificado previamente en Google Search Console.
+- Sitio verificado previamente en Bing Webmaster Tools.
+- Dominio técnico de Netlify: https://cleylawyerlegal.netlify.app
+
+La dirección oficial y preferida es:
+https://cleylawyerlegal.com
+
+No repitas verificaciones que ya están realizadas. No elimines archivos, códigos, metadatos ni registros que permitan las verificaciones existentes.
+
+============================================================
+2. PROTECCIÓN DEL PROYECTO Y PLAN DE ARCHIVOS
+============================================================
+
+Antes de editar:
+
+1. Inspecciona la estructura del repositorio y determina el framework, el sistema de rutas, la carpeta pública, los comandos de compilación y el directorio de publicación de Netlify.
+2. Localiza los componentes del encabezado, las barras superiores, las tarjetas de servicios, las páginas internas, el HERO de video, los estilos y los recursos multimedia.
+3. Localiza netlify.toml, _redirects si existe, robots.txt, sitemap.xml, metadatos SEO, etiquetas canonical, datos estructurados y verificaciones de Google/Bing.
+4. Identifica los archivos originales del logotipo y del isotipo.
+5. Identifica el video HERO, su URL actual de Google Drive y la imagen de respaldo.
+6. Comprueba si hay componentes o reglas duplicadas y si ya existen soluciones parciales.
+
+ANTES DE MODIFICAR, PRESENTA UNA TABLA CON:
+- Ruta exacta del archivo.
+- Función actual.
+- Cambio propuesto.
+- Motivo.
+- Riesgo o dependencia.
+- Si es imprescindible o solo opcional.
+
+No inventes nombres de archivos ni supongas una estructura. Usa las rutas reales que encuentres.
+
+Después de presentar el plan, implementa solo los cambios necesarios. Mantén los cambios pequeños, reversibles y coherentes con la arquitectura existente.
+
+NO:
+- Reconstruyas el sitio desde cero.
+- Cambies de framework.
+- Reemplaces archivos enteros sin necesidad.
+- Instales dependencias innecesarias.
+- Cambies rutas existentes.
+- Elimines contenido jurídico o información profesional.
+- Alteres formularios, WhatsApp, teléfonos, correos, redes sociales o funcionalidades.
+- Modifiques DNS de Cloudflare desde el código.
+- Inventes datos, enlaces, rutas, credenciales o resultados de pruebas.
+
+============================================================
+3. IDENTIDAD VISUAL
+============================================================
+
+Conserva la identidad visual existente de CleyLawyerLegal:
+
+- Negro principal: #080808
+- Negro secundario: #171717
+- Dorado naranja: #D99A19
+- Dorado claro: #F2C45D
+- Blanco: #FFFFFF
+
+Mantén una presencia importante y equilibrada del blanco para dar amplitud, limpieza y claridad. Usa negro para autoridad y elegancia, y dorado naranja como acento discreto en líneas, bordes, detalles, iconos y botones.
+
+No introduzcas colores ajenos a la identidad aprobada. Evita exceso de dorado, sombras fuertes, brillos exagerados, degradados recargados y adornos innecesarios.
+
+El resultado debe sentirse moderno, minimalista, premium, limpio y profesional, sin perder la identidad actual.
+
+============================================================
+4. ELIMINAR ÚNICAMENTE LA BARRA DUPLICADA EN ESCRITORIO
+============================================================
+
+Existe una primera barra o tarjeta superior de redes sociales/contacto que aparece duplicada al abrir el sitio en computadora o escritorio. En móvil no aparece ese duplicado.
+
+Cambio obligatorio:
+- Identifica el componente exacto que genera la primera barra duplicada.
+- Elimina u oculta exclusivamente esa primera barra duplicada en el breakpoint de escritorio.
+- Conserva el encabezado principal, logotipo, navegación y los elementos correctos del header.
+- Conserva los iconos y elementos sociales que correspondan al diseño aprobado.
+- No elimines ni ocultes las redes sociales de la versión móvil.
+- No ocultes indiscriminadamente todos los elementos que tengan iconos sociales.
+- No alteres el orden ni el espaciado de las demás secciones.
+
+Comprueba el resultado en laptop y escritorio con distintos anchos de pantalla. Comprueba también Android y iPhone para confirmar que la versión móvil permanece intacta.
+
+============================================================
+5. TARJETAS DE SERVICIOS JURÍDICOS
+============================================================
+
+Mejora las tarjetas existentes sin cambiar los servicios, sus fotografías correctas ni sus destinos.
+
+La fotografía debe ser protagonista. El nombre real de cada servicio debe quedar SUPERPUESTO sobre la imagen, en la parte inferior, grande, claramente legible y preferiblemente alineado abajo a la izquierda.
+
+Tratamiento visual:
+- Texto blanco, de tamaño destacado y tipografía profesional.
+- Degradado negro sutil en la parte inferior de la imagen para asegurar contraste.
+- Márgenes internos equilibrados.
+- Acento dorado naranja discreto cuando corresponda.
+- Imagen sin deformación.
+- Recorte controlado y `object-position` ajustado a cada fotografía.
+- Bordes y esquinas coherentes con el diseño actual.
+
+No coloques el título como un texto pequeño separado debajo de la fotografía. Debe formar parte de la composición visual mediante superposición.
+
+Efectos:
+- Zoom muy ligero y progresivo de la imagen al pasar el cursor.
+- Transiciones suaves.
+- Elevación moderada de la tarjeta.
+- Sombra discreta.
+- Hover dorado sutil en los elementos interactivos.
+- Animaciones de entrada discretas, si son compatibles con el diseño actual.
+
+No uses movimientos bruscos ni animaciones permanentes que distraigan. En pantallas táctiles el título y la información deben estar visibles sin depender de hover. Respeta `prefers-reduced-motion`.
+
+Conserva las descripciones jurídicas existentes. Deben aparecer debajo de la imagen o en la zona inferior de la tarjeta, con fondo blanco donde corresponda, buen espaciado y lectura cómoda. No resumas, reescribas ni inventes contenido jurídico.
+
+============================================================
+6. BOTONES Y LLAMADAS A LA ACCIÓN
+============================================================
+
+Unifica visualmente los botones de las tarjetas y páginas:
+
+- Fondo negro sólido.
+- Texto blanco.
+- Borde o acento dorado naranja.
+- Esquinas discretamente redondeadas.
+- Tipografía clara y profesional.
+- Flecha pequeña y elegante cuando corresponda.
+- Transición dorada sutil al interactuar.
+- Área táctil cómoda en móvil.
+
+Utiliza etiquetas coherentes, como “Conocer más” o “Ver detalles”, respetando el propósito de cada botón.
+
+Cada botón debe enlazar a la ruta REAL del servicio o acción correspondiente. Inspecciona las rutas existentes antes de modificar enlaces. No inventes destinos ni dirijas todos los botones a una misma página si sus destinos son distintos.
+
+Revisa todos los enlaces:
+- Navegación principal.
+- Tarjetas de servicios.
+- Páginas internas.
+- Contacto.
+- WhatsApp.
+- Correo.
+- Redes sociales.
+- Formularios.
+- Footer.
+- Enlaces externos y botones de regreso.
+
+No dejes botones sin acción ni uses `href="#"` como solución provisional. No cambies destinos válidos. Verifica que las rutas internas funcionen al navegar y al abrirlas directamente.
+
+============================================================
+7. PÁGINAS INTERNAS
+============================================================
+
+Mantén íntegros todos los textos, apartados, listas, descripciones, beneficios, contenido jurídico, botones y funcionalidades existentes.
+
+Ajusta únicamente los elementos visuales que lo necesiten para mantener coherencia con las tarjetas principales:
+- Títulos y jerarquía.
+- Espaciado y alineación.
+- Lectura y contraste.
+- Fotografías.
+- Botones.
+- Separadores.
+- Navegación contextual.
+- Adaptación responsive.
+
+No resumas ni elimines contenido. No inventes información. Comprueba que cada página conserve su ruta y que sus enlaces y llamadas a la acción funcionen.
+
+============================================================
+8. VIDEO HERO: GOOGLE DRIVE, AUTOPLAY Y FORMATO 16:9
+============================================================
+
+El HERO utiliza actualmente un video enlazado desde Google Drive. Inspecciona el enlace y la implementación real antes de cambiarla.
+
+Objetivos:
+- Mantener la proporción original 16:9.
+- Mostrar el encuadre completo, sin deformación ni recortes importantes.
+- Adaptarse a escritorio, laptop, monitores grandes, tablets, Android y iPhone.
+- Intentar reproducción automática con sonido silenciado.
+- Repetir en bucle y reproducirse inline en móviles.
+- Mantener una imagen de respaldo si el navegador bloquea la reproducción.
+
+Atributos y comportamiento recomendados, si son compatibles con la implementación:
+`autoplay`, `muted`, `loop`, `playsInline` y una estrategia apropiada de `preload`.
+
+El contenedor debe conservar la relación 16:9. Prioriza que el video se vea completo. Usa `object-fit: contain` cuando sea necesario evitar recortes; si quedan bandas, utiliza un fondo coherente con la identidad visual. No estires el video ni lo conviertas en 4:3. No utilices `cover` si corta elementos importantes.
+
+Compatibilidad y Google Drive:
+- Determina si la URL actual de Drive es un enlace de visualización/compartición o una fuente directa apta para reproducción HTML5.
+- Comprueba acceso público, tipo MIME, solicitudes de rango, restricciones y comportamiento en navegadores.
+- No asumas que un enlace de vista previa de Drive funcionará como fuente estable de `<video>`.
+- Si no es fiable, informa y propone una fuente MP4 pública y estable, alojada como recurso del proyecto o en almacenamiento/CDN apropiado.
+- No cambies la fuente de producción hasta comprobar que el nuevo archivo existe, es accesible y funciona.
+- No inventes una URL ni afirmes que el video funciona si no se ha probado.
+
+No se puede garantizar autoplay en absolutamente todos los dispositivos: algunos navegadores lo bloquean por sus políticas. Implementa una alternativa profesional con la imagen de respaldo existente, sin pantalla negra ni espacio vacío.
+
+Evita cargar varias copias del video, bloquear la carga inicial o perjudicar Core Web Vitals. Respeta `prefers-reduced-motion`.
+
+============================================================
+9. OPTIMIZACIÓN DE IMÁGENES
+============================================================
+
+Inspecciona las imágenes y optimiza sin deteriorar su calidad:
+- Usa WebP o AVIF cuando el proyecto y los navegadores objetivo lo permitan.
+- Conserva PNG para transparencia cuando corresponda.
+- Mantén los originales como respaldo.
+- Genera tamaños apropiados para el uso real.
+- Usa lazy loading en imágenes fuera de pantalla.
+- Prioriza las imágenes críticas del primer bloque visible.
+- Añade dimensiones cuando corresponda para evitar saltos de diseño.
+- Usa `srcset` y `sizes` solo cuando aporten una mejora real.
+- Añade ALT descriptivos y fieles.
+- Evita recursos excesivamente pesados.
+- No alteres ni sustituyas el isotipo original.
+
+No sacrifiques la calidad visual profesional.
+
+============================================================
+10. TARJETA PROFESIONAL AL COMPARTIR EL ENLACE
+============================================================
+
+Al compartir https://cleylawyerlegal.com, quiero una tarjeta visual profesional, no solamente una URL.
+
+Debe mostrar el isotipo original, el nombre CleyLawyerLegal, un título profesional, una descripción breve y una imagen de presentación coherente con la marca.
+
+Localiza el isotipo y los recursos aprobados en el repositorio. No lo redibujes ni lo sustituyas. Si hace falta una composición social, créala únicamente con los recursos originales y la identidad existente.
+
+Prepara preferentemente una imagen de 1200 × 630 píxeles, proporción aproximada 1.91:1, JPG o PNG, optimizada y accesible públicamente por HTTPS. Debe tener fondo limpio, colores negro/blanco/dorado naranja, isotipo reconocible y nombre legible. No uses una captura de pantalla del sitio.
+
+Ubica el archivo en la carpeta pública real del framework. Una ruta ilustrativa podría ser `/images/cleylawyerlegal-social.jpg`, pero utiliza la ruta real que corresponda y confirma que el archivo exista en producción.
+
+Configura Open Graph, adaptando la ruta y los datos reales:
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CleyLawyerLegal" />
+<meta property="og:title" content="CleyLawyerLegal | Servicios Legales Profesionales" />
+<meta property="og:description" content="Asesoría y representación legal con experiencia, compromiso y atención profesional en Panamá." />
+<meta property="og:url" content="https://cleylawyerlegal.com/" />
+<meta property="og:image" content="https://cleylawyerlegal.com/RUTA-REAL-DE-LA-IMAGEN" />
+<meta property="og:image:secure_url" content="https://cleylawyerlegal.com/RUTA-REAL-DE-LA-IMAGEN" />
+<meta property="og:image:alt" content="Identidad visual oficial de CleyLawyerLegal" />
+
+Incluye `og:image:width`, `og:image:height` y `og:image:type` con valores que correspondan al archivo real.
+
+Configura Twitter/X Cards:
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CleyLawyerLegal | Servicios Legales Profesionales" />
+<meta name="twitter:description" content="Asesoría y representación legal con experiencia, compromiso y atención profesional en Panamá." />
+<meta name="twitter:image" content="https://cleylawyerlegal.com/RUTA-REAL-DE-LA-IMAGEN" />
+<meta name="twitter:image:alt" content="Identidad visual oficial de CleyLawyerLegal" />
+
+La descripción debe ser fiel al contenido y los servicios reales del sitio. No inventes especialidades, promesas ni credenciales.
+
+CRÍTICO: las etiquetas deben estar en el HTML inicial que reciben los rastreadores de WhatsApp, Facebook, Messenger, LinkedIn, Telegram y otras plataformas. Si el proyecto es SPA/React, comprueba si los metadatos se generan solo después de ejecutar JavaScript. Usa la solución compatible con el framework actual para que estén disponibles en el HTML inicial. No instales otro framework ni reconstruyas la aplicación. Evita etiquetas duplicadas. Si se pueden configurar metadatos específicos para páginas internas, hazlo usando sus rutas y contenidos reales.
+
+Después del despliegue, explica cómo actualizar la vista previa en los depuradores o herramientas de caché de cada plataforma, si fuera necesario. No garantices que todas las aplicaciones actualicen su caché inmediatamente.
+
+============================================================
+11. SEO, GOOGLE, BING Y BUSCADORES DE IA
+============================================================
+
+Conserva las verificaciones actuales de Google Search Console y Bing Webmaster Tools. No elimines archivos, códigos, metadatos ni registros de verificación.
+
+Dominio preferido:
+https://cleylawyerlegal.com
+
+Canonical:
+Cada página pública debe tener su propia URL canonical absoluta bajo el dominio oficial. No uses la canonical de inicio en todas las páginas. No inventes rutas.
+
+Robots.txt:
+Inspecciona el archivo existente. Conserva directivas válidas y permite el rastreo de páginas públicas. Si corresponde, incluye:
+
+User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+Sitemap: https://cleylawyerlegal.com/sitemap.xml
+
+No bloquees recursos necesarios. No añadas reglas generales que impidan la indexación. No habilites ni bloquees GPTBot automáticamente: es un rastreador distinto y su configuración debe ser una decisión separada. Distingue la función de OAI-SearchBot para descubrimiento en ChatGPT Search de ChatGPT-User para visitas iniciadas por usuarios.
+
+Sitemap:
+Comprueba que https://cleylawyerlegal.com/sitemap.xml devuelva XML válido, UTF-8 y URLs absolutas del dominio oficial. Incluye solo páginas públicas, reales y existentes. Excluye duplicados, páginas privadas, inexistentes y URLs de Netlify. No inventes `lastmod`. Asegúrate de que el fallback SPA no sustituya el XML por index.html.
+
+SEO por página:
+- Títulos únicos y descriptivos.
+- Meta descriptions únicas y fieles.
+- Un H1 principal adecuado.
+- Jerarquía H2/H3 coherente.
+- ALT descriptivos.
+- Open Graph y Twitter Cards.
+- `lang="es"`.
+- Canonical correcta.
+- Enlaces internos descriptivos.
+- URLs oficiales consistentes.
+
+Datos estructurados:
+Revisa Schema.org y utiliza únicamente los tipos apropiados, por ejemplo LegalService, Organization, Person, WebSite y BreadcrumbList. Usa solo datos profesionales reales ya presentes y confirmados. No inventes reseñas, calificaciones, premios, credenciales, dirección ni datos de contacto. Evita datos estructurados duplicados.
+
+Facilita el rastreo e interpretación por buscadores tradicionales y sistemas de IA. No prometas inclusión automática ni indexación garantizada en Google, Bing o ChatGPT.
+
+============================================================
+12. REDIRECCIONES Y NETLIFY
+============================================================
+
+Conserva https://cleylawyerlegal.com como dominio oficial.
+
+Inspecciona netlify.toml y cualquier archivo `_redirects` antes de cambiar nada.
+
+Si la redirección del subdominio Netlify al dominio oficial es necesaria y compatible con la configuración real, evalúa esta regla:
+
+[[redirects]]
+  from = "https://cleylawyerlegal.netlify.app/*"
+  to = "https://cleylawyerlegal.com/:splat"
+  status = 301
+  force = true
+
+No la agregues a ciegas. Comprueba la sintaxis y el comportamiento admitidos por Netlify, la precedencia de reglas y la configuración Primary Domain. Si Netlify ofrece una configuración de dominio principal más apropiada, utiliza el mecanismo correcto y documenta el motivo.
+
+No dupliques reglas, no generes bucles y conserva las rutas internas y los fallbacks necesarios para el framework.
+
+No cambies DNS ni nameservers de Cloudflare desde el código. No inventes IP, CNAME ni registros. Si hace falta una acción manual, indícala claramente.
+
+Comprueba HTTPS, certificado y redirecciones HTTP/HTTPS. La versión www solo debe redirigirse si está configurada y verificada.
+
+============================================================
+13. RESPONSIVE Y ACCESIBILIDAD
+============================================================
+
+Comprueba Android, iPhone, tablets, laptops, escritorio y monitores grandes.
+
+Verifica header, menú, barra social, tarjetas, fotografías, títulos superpuestos, botones, HERO, páginas internas, formularios y footer.
+
+No debe haber desbordamiento horizontal, textos cortados, imágenes deformadas ni botones difíciles de pulsar.
+
+Conserva la versión móvil aprobada. La eliminación de la barra duplicada debe afectar exclusivamente al escritorio.
+
+Comprueba contraste, navegación por teclado, foco visible, etiquetas accesibles, ALT, nombres descriptivos de botones y formularios funcionales.
+
+============================================================
+14. RENDIMIENTO Y SEGURIDAD
+============================================================
+
+Optimiza sin sacrificar calidad:
+- LCP, INP y CLS.
+- Peso de imágenes y video.
+- Carga de fuentes.
+- JavaScript y CSS.
+- Recursos bloqueantes.
+- Lazy loading.
+- Caché de recursos estáticos.
+
+No expongas claves ni secretos. No añadas dependencias innecesarias. No alteres funcionalidades existentes. No afirmes métricas que no hayas medido.
+
+============================================================
+15. PRUEBAS OBLIGATORIAS
+============================================================
+
+Ejecuta el comando de compilación real del proyecto y comprueba:
+
+1. La compilación de producción finaliza correctamente.
+2. La página principal abre mediante HTTPS.
+3. Robots.txt responde correctamente.
+4. Sitemap.xml devuelve XML válido.
+5. Las canonical apuntan al dominio oficial y son específicas por página.
+6. Open Graph está en el HTML inicial.
+7. La imagen social existe, responde públicamente y tiene dimensiones adecuadas.
+8. Título y descripción de la tarjeta son correctos.
+9. La redirección del dominio Netlify funciona si se ha configurado.
+10. Las rutas internas abren directamente y al navegar.
+11. Todos los botones y enlaces llevan a sus destinos reales.
+12. WhatsApp, correo, redes y formularios conservan su funcionamiento.
+13. El video HERO se prueba en navegadores/dispositivos disponibles.
+14. El video conserva 16:9 y el encuadre completo.
+15. Existe fallback visual cuando autoplay no está permitido.
+16. Las imágenes se cargan correctamente.
+17. La barra duplicada desapareció solo en escritorio.
+18. La versión móvil sigue funcionando como antes.
+19. No hay errores de compilación ni errores nuevos de consola.
+20. No se han perdido verificaciones de Google o Bing.
+21. No hay redirecciones circulares ni errores 404 nuevos.
+
+Si una prueba requiere el despliegue público o acceso a una plataforma externa, indícala como pendiente. No simules ni inventes resultados.
+
+============================================================
+16. GITHUB Y NETLIFY
+============================================================
+
+Prepara los cambios para el repositorio GitHub y el proceso de despliegue Netlify ya existentes.
+
+No cambies repositorio, rama de producción, framework, comando de compilación ni directorio de publicación sin una necesidad técnica demostrada.
+
+No elimines archivos. Confirma que los recursos nuevos (incluida la imagen social, robots.txt y sitemap.xml si se modifican) se incluyan en el resultado de producción.
+
+No afirmes que el sitio está desplegado hasta que el despliegue real se haya realizado y comprobado.
+
+============================================================
+17. INFORME FINAL OBLIGATORIO
+============================================================
+
+Entrega un informe claro con:
+
+A. INSPECCIÓN
+- Framework y estructura detectados.
+- Archivos inspeccionados.
+- Problemas encontrados.
+
+B. CAMBIOS
+- Ruta exacta de cada archivo modificado o creado.
+- Motivo de cada modificación.
+- Cambios visuales de las tarjetas.
+- Efectos de imágenes.
+- Botones y enlaces corregidos.
+- Componente duplicado eliminado en escritorio.
+- Confirmación de que móvil se conservó.
+- Estado del video, fuente, proporción 16:9 y fallback.
+- Imágenes optimizadas.
+- Imagen social y ruta pública.
+- Metadatos Open Graph y Twitter.
+- SEO, canonical, robots.txt y sitemap.
+- Redirecciones.
+
+C. PRUEBAS
+- Comando de compilación y resultado.
+- Pruebas realizadas y resultado de cada una.
+- Pruebas pendientes de despliegue o validación externa.
+
+D. ACCIONES MANUALES
+- Pasos exactos pendientes en Cloudflare, Netlify, Google Search Console, Bing o plataformas sociales, si los hubiera.
+
+Diferencia claramente entre:
+- Comprobado y funcionando.
+- Modificado y listo para desplegar.
+- Pendiente de comprobar después del despliegue.
+- Acción manual requerida.
+
+============================================================
+INSTRUCCIÓN FINAL
+============================================================
+
+El objetivo es mejorar el sitio existente CleyLawyerLegal sin comprometer su funcionamiento ni su identidad.
+
+Quiero tarjetas de servicios con fotografías protagonistas, títulos grandes superpuestos en la parte inferior, descripciones limpias y botones profesionales conectados a sus páginas reales.
+
+Quiero un sitio blanco, negro y dorado naranja, elegante, moderno, dinámico y profesional.
+
+Quiero eliminar exclusivamente la primera barra superior duplicada de redes sociales en escritorio, manteniendo intactos el header principal y la versión móvil.
+
+Quiero que el video HERO conserve su proporción 16:9, se vea completo, intente reproducirse automáticamente con muted/loop/playsInline y tenga una alternativa visual cuando el navegador bloquee autoplay. No afirmes compatibilidad universal sin pruebas.
+
+Quiero imágenes optimizadas, navegación y enlaces funcionales, páginas internas coherentes, SEO técnico correcto y una tarjeta profesional al compartir el enlace que utilice el isotipo original.
+
+Trabaja sobre el código actual. Haz primero la inspección y presenta el plan de archivos. Después implementa solo los cambios necesarios, prueba la compilación y entrega el informe. No reconstruyas el sitio, no cambies la identidad visual, no elimines contenido ni funcionalidades y no inventes información.

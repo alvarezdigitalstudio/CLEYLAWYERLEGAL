@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import type {
   BlogArticle,
   BlogCategory,
@@ -51,7 +52,31 @@ export interface GeneralValidationResult {
   errors: GeneralContactFieldErrors;
 }
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+export type FieldVisualState = 'neutral' | 'valid' | 'invalid';
+
+export function getFieldVisualState(options: {
+  hasInteracted: boolean;
+  error?: string;
+  value?: string;
+  allowEmptyNeutral?: boolean;
+}): FieldVisualState {
+  if (options.error) {
+    return 'invalid';
+  }
+  if (!options.hasInteracted) {
+    return 'neutral';
+  }
+  if (
+    options.allowEmptyNeutral &&
+    (!options.value || options.value.trim().length === 0)
+  ) {
+    return 'neutral';
+  }
+  return 'valid';
+}
+
+const EMAIL_TLD_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_ALLOWED_CHARS_PATTERN = /^[+\d\s().-]+$/;
 export const OFFICIAL_WHATSAPP_BASE = 'https://wa.me/50764971468';
 
 export const INPUT_LIMITS = {
@@ -66,6 +91,107 @@ export function sanitizeUserText(value: string, maxLength: number): string {
     .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
     .trim()
     .slice(0, maxLength);
+}
+
+const fullNameSchema = z
+  .string()
+  .transform((val) => sanitizeUserText(val, INPUT_LIMITS.fullName + 1))
+  .refine((val) => val.length >= 3, {
+    message: 'Ingrese su nombre completo (mínimo 3 caracteres).',
+  })
+  .refine((val) => val.length <= INPUT_LIMITS.fullName, {
+    message: `El nombre no debe exceder ${INPUT_LIMITS.fullName} caracteres.`,
+  });
+
+export const phoneSchema = z
+  .string()
+  .trim()
+  .min(1, 'Ingrese un número telefónico válido (ej. +507 6000-0000).')
+  .max(INPUT_LIMITS.phone, `El teléfono no debe exceder ${INPUT_LIMITS.phone} caracteres.`)
+  .refine((val) => PHONE_ALLOWED_CHARS_PATTERN.test(val), {
+    message: 'El teléfono solo puede contener dígitos, espacios, +, () o guiones.',
+  })
+  .refine((val) => {
+    const digitsCount = val.replace(/\D/g, '').length;
+    return digitsCount >= 7 && digitsCount <= 15;
+  }, {
+    message: 'Ingrese un número telefónico válido (entre 7 y 15 dígitos).',
+  });
+
+export const emailSchema = z
+  .string()
+  .trim()
+  .min(1, 'Ingrese su correo electrónico.')
+  .max(INPUT_LIMITS.email, `El correo no debe exceder ${INPUT_LIMITS.email} caracteres.`)
+  .email('Ingrese un correo electrónico válido (ej. nombre@correo.com).')
+  .refine((val) => EMAIL_TLD_PATTERN.test(val), {
+    message: 'Ingrese un correo electrónico válido (ej. nombre@correo.com).',
+  });
+
+export const whatsAppConsultationSchema = z.object({
+  fullName: fullNameSchema,
+  phone: phoneSchema,
+  province: z.string().trim().min(1, 'Seleccione su provincia.'),
+  serviceName: z.string().trim().min(1, 'El servicio jurídico es obligatorio.'),
+  message: z
+    .string()
+    .trim()
+    .max(INPUT_LIMITS.message, `La descripción no debe exceder ${INPUT_LIMITS.message} caracteres.`),
+  contactPreference: z.enum(['WhatsApp', 'Correo electrónico', 'Llamada telefónica']),
+  privacyAccepted: z.boolean().refine((val) => val === true, {
+    message: 'Debe aceptar la Política de Privacidad para continuar.',
+  }),
+  honeypot: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.trim().length === 0, {
+      message: 'Verificación automática no superada.',
+    }),
+});
+
+export const generalContactSchema = z.object({
+  fullName: fullNameSchema,
+  email: emailSchema,
+  phone: phoneSchema,
+  province: z.string().trim().min(1, 'Seleccione su provincia.'),
+  serviceArea: z.string().trim().min(1, 'Seleccione el área jurídica de interés.'),
+  modality: z.enum([
+    'Presencial en David, Chiriquí',
+    'Videollamada',
+    'Llamada telefónica',
+  ]),
+  message: z
+    .string()
+    .transform((val) => sanitizeUserText(val, INPUT_LIMITS.message + 1))
+    .refine((val) => val.length >= 10, {
+      message:
+        'Describa brevemente su consulta sin incluir datos confidenciales sensibles (mínimo 10 caracteres).',
+    })
+    .refine((val) => val.length <= INPUT_LIMITS.message, {
+      message: `La consulta no debe exceder ${INPUT_LIMITS.message} caracteres.`,
+    }),
+  privacyAccepted: z.boolean().refine((val) => val === true, {
+    message: 'Debe aceptar la Política de Privacidad para continuar.',
+  }),
+  honeypot: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.trim().length === 0, {
+      message: 'Verificación automática no superada.',
+    }),
+});
+
+function mapZodIssuesToErrors<T extends string>(
+  issues: z.ZodIssue[],
+): Partial<Record<T, string>> {
+  const errors: Partial<Record<T, string>> = {};
+  for (const issue of issues) {
+    const field = issue.path[0] as T | undefined;
+    if (field && !errors[field]) {
+      errors[field] = issue.message;
+    }
+  }
+  return errors;
 }
 
 export function filterPracticeAreasByFamily(
@@ -98,49 +224,28 @@ export function getPrevCarouselIndex(current: number, total: number): number {
   return (current - 1 + total) % total;
 }
 
+export function validateWhatsAppField<K extends keyof WhatsAppConsultationInput>(
+  field: K,
+  value: WhatsAppConsultationInput[K],
+): string | undefined {
+  const fieldSchema = whatsAppConsultationSchema.shape[field];
+  if (!fieldSchema) return undefined;
+  const result = fieldSchema.safeParse(value);
+  return result.success ? undefined : result.error.issues[0]?.message;
+}
+
 export function validateWhatsAppConsultation(
   input: WhatsAppConsultationInput,
 ): WhatsAppValidationResult {
-  const errors: WhatsAppFieldErrors = {};
-
-  if (input.honeypot && input.honeypot.trim().length > 0) {
-    errors.honeypot = 'Verificación automática no superada.';
+  const result = whatsAppConsultationSchema.safeParse(input);
+  if (result.success) {
+    return { valid: true, errors: {} };
   }
-
-  const cleanName = sanitizeUserText(input.fullName, INPUT_LIMITS.fullName + 1);
-  if (cleanName.length < 3) {
-    errors.fullName = 'Ingrese su nombre completo (mínimo 3 caracteres).';
-  } else if (input.fullName.trim().length > INPUT_LIMITS.fullName) {
-    errors.fullName = `El nombre no debe exceder ${INPUT_LIMITS.fullName} caracteres.`;
-  }
-
-  const digitsOnly = input.phone.replace(/\D/g, '');
-  if (digitsOnly.length < 7) {
-    errors.phone = 'Ingrese un número telefónico válido (mínimo 7 dígitos).';
-  } else if (input.phone.trim().length > INPUT_LIMITS.phone) {
-    errors.phone = `El teléfono no debe exceder ${INPUT_LIMITS.phone} caracteres.`;
-  }
-
-  if (!input.province.trim()) {
-    errors.province = 'Seleccione su provincia.';
-  }
-
-  if (!input.serviceName.trim()) {
-    errors.serviceName = 'El servicio jurídico es obligatorio.';
-  }
-
-  if (input.message.trim().length > INPUT_LIMITS.message) {
-    errors.message = `La descripción no debe exceder ${INPUT_LIMITS.message} caracteres.`;
-  }
-
-  if (!input.privacyAccepted) {
-    errors.privacyAccepted =
-      'Debe aceptar la Política de Privacidad para continuar.';
-  }
-
   return {
-    valid: Object.keys(errors).length === 0,
-    errors,
+    valid: false,
+    errors: mapZodIssuesToErrors<keyof WhatsAppConsultationInput>(
+      result.error.issues,
+    ),
   };
 }
 
@@ -189,61 +294,28 @@ export function buildWhatsAppUrl(input: {
   return `${OFFICIAL_WHATSAPP_BASE}?text=${encodeURIComponent(text)}`;
 }
 
+export function validateGeneralContactField<K extends keyof GeneralContactInput>(
+  field: K,
+  value: GeneralContactInput[K],
+): string | undefined {
+  const fieldSchema = generalContactSchema.shape[field];
+  if (!fieldSchema) return undefined;
+  const result = fieldSchema.safeParse(value);
+  return result.success ? undefined : result.error.issues[0]?.message;
+}
+
 export function validateGeneralContactForm(
   input: GeneralContactInput,
 ): GeneralValidationResult {
-  const errors: GeneralContactFieldErrors = {};
-
-  if (input.honeypot && input.honeypot.trim().length > 0) {
-    errors.honeypot = 'Verificación automática no superada.';
+  const result = generalContactSchema.safeParse(input);
+  if (result.success) {
+    return { valid: true, errors: {} };
   }
-
-  const cleanName = sanitizeUserText(input.fullName, INPUT_LIMITS.fullName + 1);
-  if (cleanName.length < 3) {
-    errors.fullName = 'Ingrese su nombre completo (mínimo 3 caracteres).';
-  } else if (input.fullName.trim().length > INPUT_LIMITS.fullName) {
-    errors.fullName = `El nombre no debe exceder ${INPUT_LIMITS.fullName} caracteres.`;
-  }
-
-  const cleanEmail = input.email.trim();
-  if (
-    cleanEmail.length > INPUT_LIMITS.email ||
-    !EMAIL_PATTERN.test(cleanEmail)
-  ) {
-    errors.email = 'Ingrese un correo electrónico válido.';
-  }
-
-  const digitsOnly = input.phone.replace(/\D/g, '');
-  if (digitsOnly.length < 7) {
-    errors.phone = 'Ingrese un número telefónico válido (mínimo 7 dígitos).';
-  } else if (input.phone.trim().length > INPUT_LIMITS.phone) {
-    errors.phone = `El teléfono no debe exceder ${INPUT_LIMITS.phone} caracteres.`;
-  }
-
-  if (!input.province.trim()) {
-    errors.province = 'Seleccione su provincia.';
-  }
-
-  if (!input.serviceArea.trim()) {
-    errors.serviceArea = 'Seleccione el área jurídica de interés.';
-  }
-
-  const cleanMessage = sanitizeUserText(input.message, INPUT_LIMITS.message + 1);
-  if (cleanMessage.length < 10) {
-    errors.message =
-      'Describa brevemente su consulta sin incluir datos confidenciales sensibles (mínimo 10 caracteres).';
-  } else if (input.message.trim().length > INPUT_LIMITS.message) {
-    errors.message = `La consulta no debe exceder ${INPUT_LIMITS.message} caracteres.`;
-  }
-
-  if (!input.privacyAccepted) {
-    errors.privacyAccepted =
-      'Debe aceptar la Política de Privacidad para continuar.';
-  }
-
   return {
-    valid: Object.keys(errors).length === 0,
-    errors,
+    valid: false,
+    errors: mapZodIssuesToErrors<keyof GeneralContactInput>(
+      result.error.issues,
+    ),
   };
 }
 

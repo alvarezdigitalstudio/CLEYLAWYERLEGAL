@@ -17,118 +17,128 @@ interface HeroSectionProps {
 export function HeroSection({ onContactClick }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [videoError, setVideoError] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncMotionPreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+    syncMotionPreference();
+    mediaQuery.addEventListener('change', syncMotionPreference);
+    return () => mediaQuery.removeEventListener('change', syncMotionPreference);
+  }, []);
 
   useEffect(() => {
     const videoEl = videoRef.current;
-    if (!videoEl) return;
+    if (!videoEl || prefersReducedMotion || videoError) return;
+
     videoEl.muted = true;
     const playPromise = videoEl.play();
     if (playPromise && typeof playPromise.catch === 'function') {
       playPromise.catch(() => {
-        // Fallback visual uses poster frame when mobile browser restricts autoplay
+        setAutoplayBlocked(true);
       });
     }
-  }, []);
+  }, [prefersReducedMotion, videoError]);
+
+  const showStaticPoster = videoError || prefersReducedMotion || autoplayBlocked;
 
   return (
     <section
       id="inicio"
-      className="relative bg-[#080808] text-[#FFFFFF] overflow-hidden"
+      className="relative bg-[#000000] text-[#FFFFFF] overflow-hidden"
     >
-      {/* Background 16:9 Hero Video */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0 overflow-hidden bg-[#080808]"
-      >
-        {!videoError ? (
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover object-[center_20%] lg:object-[center_18%]"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster={HERO_POSTER_SRC}
-            onError={() => setVideoError(true)}
-          >
-            <source src={HERO_VIDEO_SRC} type="video/mp4" />
-          </video>
-        ) : (
-          <Image
-            src={HERO_POSTER_SRC}
-            alt="Estatua dorada de la Dama de la Justicia sosteniendo una balanza sobre fondo oscuro"
-            fill
-            priority
-            sizes="100vw"
-            referrerPolicy="no-referrer"
-            className="object-cover object-[center_20%] lg:object-[center_18%]"
-          />
-        )}
+      <div className="relative mx-auto w-full max-w-[1440px] lg:aspect-video flex flex-col">
+        {/* Editorial copy: stacked cleanly on mobile/tablet; left overlay on desktop 16:9 stage */}
+        <div className="relative z-20 px-4 sm:px-6 pt-8 pb-6 md:pt-12 md:pb-8 lg:py-0 lg:inset-0 lg:absolute lg:flex lg:items-center pointer-events-none">
+          <div className="w-full max-w-7xl mx-auto">
+            <motion.div
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:w-[52%] xl:w-[50%] space-y-5 pointer-events-auto"
+            >
+              <h1 className="font-serif text-[clamp(2.25rem,4.5vw,4.15rem)] font-bold leading-[1.08] tracking-tight text-[#FFFFFF] text-balance">
+                {BRAND_INFO.slogan}
+              </h1>
 
-        {/* Readability scrim preserving text contrast without obscuring the video */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/80 via-[#080808]/45 to-[#080808]/20 lg:bg-gradient-to-r lg:from-[#080808]/85 lg:via-[#080808]/35 lg:to-transparent pointer-events-none" />
-      </div>
+              <div className="w-20 h-[2px] bg-[#D99A19]" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-28 md:pt-16 md:pb-32 lg:pt-20 lg:pb-36">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left column: editorial copy */}
-          <motion.div
-            initial={false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 space-y-5 z-10"
-          >
-            <h1 className="font-serif text-[clamp(2.25rem,4.5vw,4.15rem)] font-bold leading-[1.08] tracking-tight text-[#FFFFFF] text-balance">
-              {BRAND_INFO.slogan}
-            </h1>
+              <p className="text-base sm:text-lg text-[#EEEEEE]/90 max-w-xl leading-relaxed">
+                Asesoría y representación legal con rigor, ética y discreción.{' '}
+                {BRAND_INFO.secondaryMessage}. {BRAND_INFO.lawyerName} · Idoneidad{' '}
+                {BRAND_INFO.licenseId}.
+              </p>
 
-            <div className="w-20 h-[2px] bg-[#D99A19]" aria-hidden="true" />
+              <div className="pt-3 flex flex-wrap items-center gap-3 sm:gap-4">
+                <button
+                  type="button"
+                  onClick={onContactClick}
+                  className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-[#D99A19] text-[#FFFFFF] rounded-[4px] font-semibold text-sm tracking-wide hover:bg-[#F2C45D] hover:text-[#080808] transition-colors duration-200 whitespace-nowrap cursor-pointer"
+                >
+                  <span>Contáctanos</span>
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </button>
 
-            <p className="text-base sm:text-lg text-[#EEEEEE]/90 max-w-xl leading-relaxed">
-              Asesoría y representación legal con rigor, ética y discreción.{' '}
-              {BRAND_INFO.secondaryMessage}. {BRAND_INFO.lawyerName} · Idoneidad{' '}
-              {BRAND_INFO.licenseId}.
-            </p>
-
-            <div className="pt-3 flex flex-wrap items-center gap-3 sm:gap-4">
-              <button
-                type="button"
-                onClick={onContactClick}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-[#D99A19] text-[#FFFFFF] font-semibold text-sm tracking-wide hover:bg-[#F2C45D] hover:text-[#080808] transition-colors duration-200 whitespace-nowrap cursor-pointer"
-              >
-                <span>Contáctanos</span>
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </button>
-
-              <Link
-                href="/derecho-penal?from=servicios"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 border border-[#555555] text-[#EEEEEE] text-sm font-medium hover:border-[#F2C45D] hover:text-[#F2C45D] transition-colors duration-200 whitespace-nowrap"
-              >
-                Soluciones Jurídicas Integrales
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Right column: preserved visual framing space over background video */}
-          <div
-            aria-hidden="true"
-            className="lg:col-span-6 relative pointer-events-none"
-          >
-            <div className="aspect-video lg:aspect-[4/3] w-full max-w-xl mx-auto" />
+                <Link
+                  href="/derecho-penal?from=servicios"
+                  className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center px-6 py-3.5 border border-[#555555] text-[#EEEEEE] rounded-[4px] text-sm font-medium hover:border-[#F2C45D] hover:text-[#F2C45D] transition-colors duration-200 whitespace-nowrap"
+                >
+                  Soluciones Jurídicas Integrales
+                </Link>
+              </div>
+            </motion.div>
           </div>
+        </div>
+
+        {/* Single uncropped 16:9 Hero Video / Poster Fallback */}
+        <div
+          aria-hidden="true"
+          className="relative z-0 w-full aspect-video lg:h-full bg-[#000000] overflow-hidden"
+        >
+          {!showStaticPoster ? (
+            <video
+              ref={videoRef}
+              className="w-full h-full object-contain bg-[#000000]"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster={HERO_POSTER_SRC}
+              onPlaying={() => setAutoplayBlocked(false)}
+              onError={() => setVideoError(true)}
+            >
+              <source src={HERO_VIDEO_SRC} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={HERO_POSTER_SRC}
+              alt="Estatua dorada de la Dama de la Justicia sosteniendo una balanza sobre fondo oscuro"
+              fill
+              priority
+              sizes="(max-width: 1440px) 100vw, 1440px"
+              referrerPolicy="no-referrer"
+              className="object-contain bg-[#000000]"
+            />
+          )}
+
+          {/* Readability scrim on desktop left side only */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#080808]/90 via-[#080808]/45 to-transparent pointer-events-none" />
         </div>
       </div>
 
-      {/* Curved gold and white lower architectural border */}
+      {/* Curved gold and white lower architectural border cleanly below the 16:9 video */}
       <div
         aria-hidden="true"
-        className="relative z-10 -mt-14 sm:-mt-20 md:-mt-24 w-full leading-none pointer-events-none"
+        className="relative z-20 w-full bg-[#000000] leading-none pointer-events-none"
       >
         <svg
           viewBox="0 0 1440 110"
           preserveAspectRatio="none"
-          className="w-full h-14 sm:h-20 md:h-24 block"
+          className="w-full h-6 sm:h-8 md:h-10 lg:h-12 block"
         >
           <path
             d="M0,44 C380,108 1060,-8 1440,56 L1440,110 L0,110 Z"

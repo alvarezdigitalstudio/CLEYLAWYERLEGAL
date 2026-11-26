@@ -32,10 +32,10 @@ export function ServicesSection() {
             return (
               <article
                 key={service.id}
-                className="bg-[#FFFFFF] border border-[#EEEEEE] p-7 flex flex-col justify-between transition-colors duration-200 hover:border-[#D99A19]"
+                className="group bg-[#FFFFFF] border border-[#EEEEEE] rounded-[4px] p-7 flex flex-col justify-between transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#D99A19] hover:shadow-[0_14px_30px_-14px_rgba(8,8,8,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 <div>
-                  <div className="w-12 h-12 border border-[#D99A19]/40 bg-[#EEEEEE]/50 flex items-center justify-center text-[#D99A19]">
+                  <div className="w-12 h-12 rounded-[4px] border border-[#D99A19]/40 bg-[#EEEEEE]/50 flex items-center justify-center text-[#D99A19]">
                     <Icon className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="mt-6 font-serif text-xl font-semibold text-[#080808]">
@@ -52,10 +52,13 @@ export function ServicesSection() {
                 <div className="mt-6 pt-4 border-t border-[#EEEEEE]">
                   <Link
                     href={service.targetHref}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#080808] hover:text-[#D99A19] transition-colors"
+                    className="inline-flex items-center justify-between gap-2 w-full min-h-[44px] px-4 py-2.5 bg-[#080808] text-[#FFFFFF] border border-[#D99A19]/80 rounded-[4px] text-sm font-semibold tracking-wide transition-colors duration-200 hover:bg-[#171717] hover:border-[#F2C45D] hover:text-[#F2C45D]"
                   >
-                    <span>Explorar servicio</span>
-                    <ArrowRight className="w-4 h-4 text-[#D99A19]" aria-hidden="true" />
+                    <span>Conocer más</span>
+                    <ArrowRight
+                      className="w-4 h-4 text-[#D99A19] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </div>
               </article>
@@ -66,7 +69,7 @@ export function ServicesSection() {
         <div className="mt-10 text-center">
           <Link
             href="/areas-de-practica"
-            className="inline-flex items-center gap-2.5 px-6 py-3 border border-[#080808] text-sm font-semibold text-[#080808] hover:bg-[#080808] hover:text-[#FFFFFF] transition-colors"
+            className="inline-flex items-center justify-center gap-2.5 min-h-[44px] px-7 py-3 bg-[#080808] text-[#FFFFFF] border border-[#D99A19]/80 rounded-[4px] text-sm font-semibold tracking-wide hover:bg-[#171717] hover:border-[#F2C45D] hover:text-[#F2C45D] transition-colors"
           >
             <span>Ver las 17 áreas jurídicas</span>
             <ArrowRight className="w-4 h-4 text-[#D99A19]" aria-hidden="true" />

@@ -17,19 +17,24 @@ import {
   HOME_OG_TITLE,
   OG_IMAGE_ALT,
   OG_IMAGE_PATH,
+  serializeJsonLd,
   TWITTER_IMAGE_ALT,
   validateIndexNowUrls,
 } from './seo-config';
 import { PRACTICE_AREAS_17 } from './legal-data';
 
-test('getSiteUrl prefers NEXT_PUBLIC_SITE_URL, falls back cleanly, and strips trailing slashes', () => {
+test('getSiteUrl enforces official domain and rejects Netlify or preview host leakage', () => {
   assert.equal(
     getSiteUrl({ NEXT_PUBLIC_SITE_URL: 'https://cleylawyerlegal.com/' }),
     'https://cleylawyerlegal.com',
   );
   assert.equal(
+    getSiteUrl({ NEXT_PUBLIC_SITE_URL: 'https://cleylawyerlegal.netlify.app/' }),
+    'https://cleylawyerlegal.com',
+  );
+  assert.equal(
     getSiteUrl({ APP_URL: 'https://preview.run.app/' }),
-    'https://preview.run.app',
+    'https://cleylawyerlegal.com',
   );
   assert.equal(
     getSiteUrl({ APP_URL: 'MY_APP_URL' }),
@@ -86,12 +91,13 @@ test('buildBingSiteAuthXml escapes XML entities safely', () => {
   assert.ok(xml.includes('<user>CODE&lt;123&gt;&amp;</user>'));
 });
 
-test('getAllPublicPaths covers all 24 canonical pages (core + 17 areas + 4 compliance)', () => {
+test('getAllPublicPaths covers all 25 canonical pages (core + 17 areas + 4 compliance)', () => {
   const paths = getAllPublicPaths();
-  assert.equal(paths.length, 24);
+  assert.equal(paths.length, 25);
   assert.ok(paths.includes('/'));
   assert.ok(paths.includes('/areas-de-practica'));
   assert.ok(paths.includes('/contacto'));
+  assert.ok(paths.includes('/marco-de-proteccion-profesional'));
   assert.ok(paths.includes('/derecho-penal'));
   assert.ok(paths.includes('/politica-de-privacidad'));
 
@@ -214,4 +220,13 @@ test('buildSocialMetadata builds specific subpage URLs without double slashes', 
   );
   assert.equal(meta.openGraph?.url, 'https://cleylawyerlegal.com/derecho-penal');
   assert.equal(meta.openGraph?.type, 'article');
+});
+
+test('serializeJsonLd escapes <, >, and & to prevent inline script breakout', () => {
+  const payload = { name: '</script><script>alert("x")</script>&ok' };
+  const serialized = serializeJsonLd(payload);
+  assert.ok(!serialized.includes('<'));
+  assert.ok(!serialized.includes('>'));
+  assert.ok(!serialized.includes('&'));
+  assert.deepEqual(JSON.parse(serialized), payload);
 });

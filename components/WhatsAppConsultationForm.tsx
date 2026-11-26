@@ -4,6 +4,7 @@ import { useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   AlertCircle,
+  CheckCircle2,
   ExternalLink,
   Mail,
   MessageCircle,
@@ -15,9 +16,12 @@ import {
   buildMailtoUrl,
   buildWhatsAppMessage,
   buildWhatsAppUrl,
+  getFieldVisualState,
   INPUT_LIMITS,
   validateWhatsAppConsultation,
+  validateWhatsAppField,
   type ContactPreference,
+  type FieldVisualState,
   type WhatsAppConsultationInput,
   type WhatsAppFieldErrors,
 } from '@/lib/legal-logic';
@@ -41,6 +45,9 @@ export function WhatsAppConsultationForm({
     honeypot: '',
   });
   const [errors, setErrors] = useState<WhatsAppFieldErrors>({});
+  const [interactedFields, setInteractedFields] = useState<
+    Partial<Record<keyof WhatsAppConsultationInput, boolean>>
+  >({});
   const [preparedLink, setPreparedLink] = useState<{
     whatsappUrl: string;
     mailtoUrl: string;
@@ -48,6 +55,67 @@ export function WhatsAppConsultationForm({
   } | null>(null);
 
   const formStartedRef = useRef(false);
+
+  const validateSingleField = <K extends keyof WhatsAppConsultationInput>(
+    field: K,
+    value: WhatsAppConsultationInput[K],
+  ) => {
+    const fieldError = validateWhatsAppField(field, value);
+    setErrors((prev) => {
+      if (!fieldError && !prev[field]) return prev;
+      const next = { ...prev };
+      if (fieldError) {
+        next[field] = fieldError;
+      } else {
+        delete next[field];
+      }
+      return next;
+    });
+  };
+
+  const handleFieldChange = <K extends keyof WhatsAppConsultationInput>(
+    field: K,
+    value: WhatsAppConsultationInput[K],
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    setInteractedFields((prev) => (prev[field] ? prev : { ...prev, [field]: true }));
+    validateSingleField(field, value);
+  };
+
+  const handleFieldBlur = <K extends keyof WhatsAppConsultationInput>(
+    field: K,
+    value: WhatsAppConsultationInput[K],
+  ) => {
+    setInteractedFields((prev) => (prev[field] ? prev : { ...prev, [field]: true }));
+    validateSingleField(field, value);
+  };
+
+  const getInputBorderClasses = (state: FieldVisualState) => {
+    if (state === 'invalid') {
+      return 'border-red-600 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/15';
+    }
+    if (state === 'valid') {
+      return 'border-emerald-600 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-600/15';
+    }
+    return 'border-[#555555]/30 focus:border-[#D99A19] focus:outline-none';
+  };
+
+  const fullNameState = getFieldVisualState({
+    hasInteracted: Boolean(interactedFields.fullName),
+    error: errors.fullName,
+    value: formData.fullName,
+  });
+  const phoneState = getFieldVisualState({
+    hasInteracted: Boolean(interactedFields.phone),
+    error: errors.phone,
+    value: formData.phone,
+  });
+  const messageState = getFieldVisualState({
+    hasInteracted: Boolean(interactedFields.message),
+    error: errors.message,
+    value: formData.message,
+    allowEmptyNeutral: true,
+  });
 
   const handleFormStart = () => {
     if (formStartedRef.current) return;
@@ -66,6 +134,12 @@ export function WhatsAppConsultationForm({
       serviceName,
     });
     if (!validation.valid) {
+      setInteractedFields({
+        fullName: true,
+        phone: true,
+        message: true,
+        privacyAccepted: true,
+      });
       setErrors(validation.errors);
       setPreparedLink(null);
       return;
@@ -156,22 +230,42 @@ export function WhatsAppConsultationForm({
             >
               Nombre completo
             </label>
-            <input
-              id={`${formId}-name`}
-              name="fullName"
-              type="text"
-              maxLength={INPUT_LIMITS.fullName}
-              value={formData.fullName}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, fullName: e.target.value }))
-              }
-              placeholder="Ej. Carlos Mendoza"
-              aria-invalid={Boolean(errors.fullName)}
-              className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] placeholder:text-[#555555]/70 focus:border-[#D99A19]"
-            />
+            <div className="relative">
+              <input
+                id={`${formId}-name`}
+                name="fullName"
+                type="text"
+                maxLength={INPUT_LIMITS.fullName}
+                value={formData.fullName}
+                onChange={(e) => handleFieldChange('fullName', e.target.value)}
+                onBlur={(e) => handleFieldBlur('fullName', e.target.value)}
+                placeholder="Ej. Carlos Mendoza"
+                aria-invalid={Boolean(errors.fullName)}
+                aria-describedby={errors.fullName ? `${formId}-name-error` : undefined}
+                className={`w-full px-4 py-3 pr-10 bg-[#FFFFFF] border text-sm text-[#080808] placeholder:text-[#555555]/70 transition-colors ${getInputBorderClasses(
+                  fullNameState,
+                )}`}
+              />
+              {fullNameState === 'valid' && (
+                <CheckCircle2
+                  className="w-4 h-4 text-emerald-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                  aria-hidden="true"
+                />
+              )}
+              {fullNameState === 'invalid' && (
+                <AlertCircle
+                  className="w-4 h-4 text-red-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                  aria-hidden="true"
+                />
+              )}
+            </div>
             {errors.fullName && (
-              <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
-                <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+              <p
+                id={`${formId}-name-error`}
+                role="alert"
+                className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
+              >
+                <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true" />
                 <span>{errors.fullName}</span>
               </p>
             )}
@@ -184,22 +278,44 @@ export function WhatsAppConsultationForm({
             >
               Número de teléfono
             </label>
-            <input
-              id={`${formId}-phone`}
-              name="phone"
-              type="tel"
-              maxLength={INPUT_LIMITS.phone}
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, phone: e.target.value }))
-              }
-              placeholder="+507 6000-0000"
-              aria-invalid={Boolean(errors.phone)}
-              className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] placeholder:text-[#555555]/70 focus:border-[#D99A19]"
-            />
+            <div className="relative">
+              <input
+                id={`${formId}-phone`}
+                name="phone"
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                maxLength={INPUT_LIMITS.phone}
+                value={formData.phone}
+                onChange={(e) => handleFieldChange('phone', e.target.value)}
+                onBlur={(e) => handleFieldBlur('phone', e.target.value)}
+                placeholder="+507 6000-0000"
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? `${formId}-phone-error` : undefined}
+                className={`w-full px-4 py-3 pr-10 bg-[#FFFFFF] border text-sm text-[#080808] placeholder:text-[#555555]/70 transition-colors ${getInputBorderClasses(
+                  phoneState,
+                )}`}
+              />
+              {phoneState === 'valid' && (
+                <CheckCircle2
+                  className="w-4 h-4 text-emerald-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                  aria-hidden="true"
+                />
+              )}
+              {phoneState === 'invalid' && (
+                <AlertCircle
+                  className="w-4 h-4 text-red-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                  aria-hidden="true"
+                />
+              )}
+            </div>
             {errors.phone && (
-              <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
-                <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+              <p
+                id={`${formId}-phone-error`}
+                role="alert"
+                className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
+              >
+                <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true" />
                 <span>{errors.phone}</span>
               </p>
             )}
@@ -288,18 +404,45 @@ export function WhatsAppConsultationForm({
           >
             Breve descripción (opcional)
           </label>
-          <textarea
-            id={`${formId}-message`}
-            name="message"
-            rows={3}
-            maxLength={INPUT_LIMITS.message}
-            value={formData.message}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, message: e.target.value }))
-            }
-            placeholder="Indique brevemente el motivo general de su consulta sin datos confidenciales..."
-            className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#555555]/30 text-sm text-[#080808] placeholder:text-[#555555]/70 focus:border-[#D99A19]"
-          />
+          <div className="relative">
+            <textarea
+              id={`${formId}-message`}
+              name="message"
+              rows={3}
+              maxLength={INPUT_LIMITS.message}
+              value={formData.message}
+              onChange={(e) => handleFieldChange('message', e.target.value)}
+              onBlur={(e) => handleFieldBlur('message', e.target.value)}
+              placeholder="Indique brevemente el motivo general de su consulta sin datos confidenciales..."
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? `${formId}-message-error` : undefined}
+              className={`w-full px-4 py-3 pr-10 bg-[#FFFFFF] border text-sm text-[#080808] placeholder:text-[#555555]/70 transition-colors ${getInputBorderClasses(
+                messageState,
+              )}`}
+            />
+            {messageState === 'valid' && (
+              <CheckCircle2
+                className="w-4 h-4 text-emerald-600 absolute right-3.5 top-3.5 pointer-events-none"
+                aria-hidden="true"
+              />
+            )}
+            {messageState === 'invalid' && (
+              <AlertCircle
+                className="w-4 h-4 text-red-600 absolute right-3.5 top-3.5 pointer-events-none"
+                aria-hidden="true"
+              />
+            )}
+          </div>
+          {errors.message && (
+            <p
+              id={`${formId}-message-error`}
+              role="alert"
+              className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
+            >
+              <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true" />
+              <span>{errors.message}</span>
+            </p>
+          )}
         </div>
 
         <div>
@@ -307,13 +450,11 @@ export function WhatsAppConsultationForm({
             <input
               type="checkbox"
               checked={formData.privacyAccepted}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  privacyAccepted: e.target.checked,
-                }))
-              }
+              onChange={(e) => handleFieldChange('privacyAccepted', e.target.checked)}
               aria-invalid={Boolean(errors.privacyAccepted)}
+              aria-describedby={
+                errors.privacyAccepted ? `${formId}-privacy-error` : undefined
+              }
               className="mt-1 w-4 h-4 accent-[#D99A19] shrink-0"
             />
             <span>
@@ -328,8 +469,12 @@ export function WhatsAppConsultationForm({
             </span>
           </label>
           {errors.privacyAccepted && (
-            <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[#080808]">
-              <AlertCircle className="w-3.5 h-3.5 text-[#D99A19] shrink-0" aria-hidden="true" />
+            <p
+              id={`${formId}-privacy-error`}
+              role="alert"
+              className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-red-700"
+            >
+              <AlertCircle className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true" />
               <span>{errors.privacyAccepted}</span>
             </p>
           )}

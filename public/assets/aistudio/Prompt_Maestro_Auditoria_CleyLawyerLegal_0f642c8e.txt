@@ -1,0 +1,429 @@
+PROMPT MAESTRO — AUDITORÍA INTEGRAL, RESPONSIVE, SEO, FUNCIONALIDAD Y CIBERSEGURIDAD AVANZADA
+PROYECTO CLEYLAWYERLEGAL
+
+OBJETIVO PRINCIPAL
+
+Realiza una auditoría técnica integral del proyecto existente CleyLawyerLegal.
+
+Inspecciona, analiza, verifica y comprueba exhaustivamente el código fuente, componentes, páginas, rutas, enlaces, estilos, scripts, metadatos, configuraciones, formularios, integraciones y mecanismos de seguridad.
+
+IMPORTANTE: ESTA ES UNA AUDITORÍA Y OPTIMIZACIÓN DEL PROYECTO EXISTENTE. NO ES UN REDISEÑO.
+
+No agregues secciones, textos, imágenes, funcionalidades, animaciones ni elementos nuevos. Mantén exactamente el diseño, la estructura, la identidad visual y los efectos que ya están implementados.
+
+Tu trabajo consiste en detectar errores, vulnerabilidades, incompatibilidades y problemas de funcionamiento, y corregir exclusivamente aquello que sea necesario para que el sitio funcione correctamente.
+
+1. RESPONSIVE Y COMPATIBILIDAD MULTIDISPOSITIVO
+
+Inspecciona todas las páginas y componentes en diferentes tamaños de pantalla:
+- Teléfonos Android.
+- iPhone.
+- Tablets e iPad.
+- Laptops.
+- Computadoras de escritorio.
+- Monitores de alta resolución.
+
+Verifica que:
+- Ningún elemento se desborde horizontalmente.
+- No existan textos cortados, superpuestos o ilegibles.
+- Las imágenes mantengan sus proporciones.
+- El video HERO conserve su formato y presentación original.
+- Los botones sean accesibles y tengan dimensiones táctiles adecuadas.
+- Los formularios se adapten correctamente.
+- El menú móvil funcione sin errores.
+- El encabezado mantenga su estructura.
+- Las tarjetas conserven su diseño.
+- El footer se visualice correctamente.
+- Las páginas internas mantengan su composición original.
+
+Revisa breakpoints, media queries, Flexbox, CSS Grid, dimensiones, márgenes, paddings y tipografías. Corrige únicamente los problemas responsive detectados. No cambies el diseño aprobado.
+
+2. INTEGRIDAD VISUAL, ANIMACIONES Y DINAMISMO
+
+Comprueba que todos los efectos visuales existentes funcionen correctamente:
+- Transiciones.
+- Animaciones.
+- Efectos hover.
+- Efectos de desplazamiento.
+- Aparición progresiva de elementos.
+- Zoom de imágenes.
+- Efectos del menú.
+- Interacciones de tarjetas.
+- Botones y llamadas a la acción.
+- Transiciones entre páginas.
+
+Verifica que no existan animaciones defectuosas, parpadeos, saltos de contenido, elementos congelados ni conflictos de JavaScript.
+
+Mantén las animaciones originales y optimiza su rendimiento. Respeta prefers-reduced-motion y evita que las animaciones dificulten la navegación.
+
+3. AUDITORÍA COMPLETA DE NAVEGACIÓN Y ENLACES
+
+Inspecciona el sitio completo, desde la página de inicio hasta todas las páginas internas.
+
+Verifica la conexión entre:
+- Inicio.
+- Menú principal.
+- Servicios jurídicos.
+- Áreas de práctica.
+- Páginas individuales de cada servicio.
+- Formularios de contacto.
+- Botones de información.
+- Botones de contratación o consulta.
+- Correo electrónico.
+- WhatsApp.
+- Redes sociales.
+- Enlaces internos y externos.
+- Footer.
+- Avisos legales.
+- Políticas y documentos institucionales.
+
+Comprueba que:
+1. Cada botón conduzca a su destino correcto.
+2. Cada tarjeta abra su página correspondiente.
+3. El menú principal permita acceder correctamente a todas las secciones.
+4. Los enlaces de retorno funcionen.
+5. No existan rutas inexistentes.
+6. No haya enlaces vacíos ni href="#" usados como destinos ficticios.
+7. No existan enlaces rotos.
+8. No haya redirecciones innecesarias ni ciclos de navegación.
+9. Todas las páginas internas sean accesibles.
+
+Comprueba que las rutas sean consistentes con el dominio oficial:
+https://cleylawyerlegal.com
+
+No cambies rutas que ya funcionan.
+
+4. AUDITORÍA SEO TÉCNICA Y POSICIONAMIENTO
+
+Realiza una auditoría SEO completa de todas las páginas públicas.
+
+Títulos y encabezados:
+- Title único y descriptivo por página.
+- Meta description individual.
+- Un H1 principal por página.
+- Jerarquía correcta H2, H3 y H4.
+- Subtítulos coherentes con el contenido.
+- Ausencia de títulos duplicados y encabezados vacíos.
+
+Palabras clave:
+- Relevancia de palabras clave jurídicas.
+- Correspondencia entre búsquedas y contenido real.
+- Integración natural de términos relacionados con los servicios existentes.
+- SEO local orientado a Panamá cuando corresponda.
+- Evitar saturación artificial de palabras clave.
+- No inventar especialidades ni servicios.
+
+Metadatos:
+- Canonical absoluto correcto.
+- Open Graph.
+- Twitter Cards.
+- Idioma español correctamente declarado.
+- Metadatos únicos.
+- URLs oficiales.
+- Imágenes sociales accesibles.
+
+Indexabilidad:
+- robots.txt.
+- sitemap.xml.
+- Páginas públicas rastreables.
+- Ausencia de bloqueos accidentales.
+- Control correcto de páginas privadas o noindex.
+- Ausencia de contenido duplicado.
+- Estructura HTML semántica.
+
+Datos estructurados:
+Verifica Schema.org cuando corresponda: LegalService, Organization, Person, WebSite y BreadcrumbList. Utiliza exclusivamente información real existente en el proyecto. No inventes direcciones, credenciales, registros profesionales, premios, reseñas ni datos de contacto.
+
+5. AUDITORÍA HTML, JAVASCRIPT, AJAX Y RENDERIZADO
+
+Inspecciona el código HTML, CSS, JavaScript, TypeScript, React y demás tecnologías realmente utilizadas.
+
+Verifica:
+- HTML semántico y válido.
+- Etiquetas correctamente cerradas.
+- Ausencia de elementos duplicados e IDs repetidos.
+- Atributos accesibles.
+- Scripts sin errores.
+- Eventos correctamente conectados.
+- Componentes sin conflictos.
+- Renderizado correcto.
+- Hidratación sin errores.
+- Carga de recursos.
+- Integraciones AJAX, Fetch y API existentes.
+- Tratamiento correcto de respuestas HTTP.
+- Manejo de errores de red.
+- Validación de formularios.
+- Prevención de envíos duplicados.
+- Protección de datos enviados.
+- Ausencia de errores en consola.
+
+No incorpores AJAX, bibliotecas ni dependencias nuevas si no son necesarias. Si existe una aplicación SPA, comprueba que las rutas funcionen mediante navegación interna y al acceder directamente a una URL.
+
+6. CIBERSEGURIDAD AVANZADA Y PROTECCIÓN DE INFORMACIÓN
+
+Realiza una auditoría de seguridad defensiva de todo el proyecto.
+
+El objetivo es reducir razonablemente la superficie de ataque y proteger la información institucional, los documentos y los datos personales de clientes y usuarios.
+
+No asumas que existe un atacante específico llamado «Artimax». Considera posibles ataques automatizados, agentes de IA maliciosos, bots, scrapers, malware y atacantes que buscan vulnerabilidades en el código o servicios conectados.
+
+6.1. Protección contra accesos no autorizados
+
+Inspecciona:
+- Sistemas de autenticación existentes.
+- Autorización y permisos.
+- Acceso a archivos.
+- Endpoints y APIs.
+- Paneles administrativos.
+- Recursos privados.
+- Configuración del servidor.
+- Dependencias.
+- Integraciones externas.
+
+Comprueba que ningún usuario pueda acceder a documentos o información privada sin autorización. Aplica el principio de mínimo privilegio.
+
+6.2. Protección de información confidencial
+
+Busca y corrige exposiciones de:
+- Claves API.
+- Tokens.
+- Contraseñas.
+- Credenciales.
+- Variables de entorno.
+- Datos personales.
+- Documentos privados.
+- Información de clientes.
+- Archivos internos.
+- Configuraciones sensibles.
+
+No muestres información confidencial en el frontend. No almacenes secretos en repositorios públicos. Comprueba que los archivos privados no estén disponibles mediante URLs públicas predecibles. No expongas mensajes internos, registros ni trazas que revelen datos sensibles.
+
+6.3. Protección contra ataques web
+
+Audita específicamente:
+- XSS.
+- SQL Injection, si existe una base de datos SQL.
+- NoSQL Injection, si corresponde.
+- CSRF.
+- SSRF.
+- Path Traversal.
+- Manipulación de parámetros.
+- Inyección de comandos.
+- Subida de archivos maliciosos.
+- MIME spoofing.
+- Acceso directo a recursos privados.
+- Enumeración de usuarios.
+- Fuerza bruta.
+- Abuso de formularios.
+- Bots automatizados.
+- Scraping abusivo.
+- Redirecciones maliciosas.
+
+Aplica protecciones apropiadas según la arquitectura real. No implementes filtros superficiales como sustituto de validaciones del servidor.
+
+6.4. Seguridad de formularios y comunicaciones
+
+Inspecciona todos los formularios de contacto y sus mecanismos de envío.
+
+Verifica:
+- Validación de datos en servidor.
+- Sanitización apropiada.
+- Protección contra spam.
+- Límites de solicitudes.
+- Protección contra envíos automatizados.
+- Validación de archivos adjuntos cuando existan.
+- Control de tipos y tamaños de archivos.
+- Protección de información sensible.
+- Comunicación HTTPS.
+- Manejo seguro de errores.
+
+No expongas correos, tokens o credenciales en el código del navegador.
+
+6.5. Cabeceras y configuración de seguridad
+
+Inspecciona la configuración de hosting y servidor. Implementa o corrige, cuando sea técnicamente compatible:
+- Content-Security-Policy.
+- Strict-Transport-Security.
+- X-Content-Type-Options.
+- Referrer-Policy.
+- Permissions-Policy.
+- Protección contra clickjacking mediante CSP frame-ancestors o mecanismos compatibles.
+- Cookies Secure, HttpOnly y SameSite cuando existan cookies de sesión.
+
+No establezcas políticas que bloqueen recursos legítimos del sitio. No utilices unsafe-eval ni amplíes innecesariamente unsafe-inline en CSP. Comprueba que las políticas sean compatibles con el funcionamiento real del sitio.
+
+6.6. Dependencias y cadena de suministro
+
+Audita los paquetes instalados:
+- Dependencias desactualizadas.
+- Vulnerabilidades conocidas.
+- Paquetes innecesarios.
+- Dependencias sospechosas.
+- Scripts de instalación.
+- Versiones incompatibles.
+- Paquetes abandonados.
+
+No actualices indiscriminadamente todas las dependencias. Corrige vulnerabilidades con cambios controlados y compatibles.
+
+6.7. Protección de documentos y archivos de clientes
+
+Si el proyecto dispone de almacenamiento, carga de documentos o servicios externos:
+- Comprueba que los archivos privados no sean públicos.
+- Verifica permisos de lectura y escritura.
+- Comprueba controles de acceso en servidor.
+- Evita exposición de documentos mediante directorios públicos.
+- Verifica políticas de almacenamiento.
+- Comprueba expiración de enlaces temporales cuando corresponda.
+- Evita que información confidencial aparezca en logs.
+- Verifica que las copias de seguridad estén protegidas.
+
+Si no existe un sistema de almacenamiento privado, no inventes uno ni afirmes que los documentos están protegidos por un servicio que no está configurado.
+
+6.8. Bots y agentes automatizados
+
+Analiza las posibilidades de extracción abusiva de información.
+
+Implementa controles razonables en el servidor, CDN o proveedor de hosting cuando estén disponibles:
+- Rate limiting.
+- Detección de patrones anómalos.
+- Restricción de endpoints sensibles.
+- Protección contra abuso de formularios.
+- Reglas WAF cuando el proveedor lo permita.
+- Monitorización de solicitudes sospechosas.
+
+No bloquees indiscriminadamente los buscadores legítimos ni los rastreadores autorizados. No utilices robots.txt como mecanismo de seguridad: los documentos privados deben protegerse mediante autenticación y controles de acceso.
+
+6.9. Cloudflare, Netlify y despliegue
+
+Inspecciona las configuraciones disponibles en el repositorio para Cloudflare y Netlify.
+
+Comprueba:
+- Redirección HTTPS.
+- Dominio principal.
+- Configuración de headers.
+- Reglas de redirección.
+- Reglas de seguridad existentes.
+- Configuración de publicación.
+- Archivos privados.
+- Variables de entorno.
+- Endpoints expuestos.
+
+No modifiques DNS, nameservers ni registros de Cloudflare. No cambies configuraciones externas sin autorización y sin comprobar su impacto.
+
+Si alguna protección requiere activar una opción en Cloudflare, Netlify o un proveedor externo, indícalo como acción pendiente. No simules que quedó activada.
+
+7. RENDIMIENTO Y EXPERIENCIA DE USUARIO
+
+Comprueba:
+- Velocidad de carga.
+- Core Web Vitals.
+- LCP.
+- INP.
+- CLS.
+- Optimización de imágenes.
+- Carga diferida.
+- Priorización de recursos principales.
+- Compresión.
+- Caché.
+- Fuentes.
+- JavaScript innecesario.
+- CSS no utilizado.
+- Tamaño de recursos.
+- Estabilidad visual.
+
+Mantén la calidad y presentación de las fotografías y del video existentes. No elimines animaciones ni efectos aprobados para conseguir mejoras artificiales de velocidad.
+
+8. INTEGRIDAD DEL PROYECTO
+
+Antes de modificar cualquier archivo:
+1. Inspecciona el estado actual del repositorio.
+2. Identifica los archivos involucrados.
+3. Comprueba si existen modificaciones pendientes.
+4. Identifica conflictos de código.
+5. Presenta un diagnóstico de los problemas encontrados.
+6. Indica qué archivos necesitarían cambios y por qué.
+
+No sobrescribas cambios anteriores sin revisarlos. No aceptes automáticamente versiones de archivos en conflicto. Si una corrección puede afectar elementos existentes, explica el riesgo antes de ejecutarla.
+
+9. REGLAS ABSOLUTAS
+
+NO agregues contenido nuevo.
+NO cambies el diseño.
+NO cambies los colores.
+NO sustituyas fotografías.
+NO modifiques el video HERO.
+NO alteres el menú.
+NO elimines animaciones.
+NO cambies los textos aprobados.
+NO inventes páginas.
+NO cambies las rutas existentes que funcionan.
+NO elimines verificaciones de Google o Bing.
+NO cambies el dominio oficial.
+NO modifiques DNS.
+NO elimines funcionalidades.
+NO reconstruyas el sitio.
+NO publiques ni despliegues cambios sin autorización.
+
+10. PRUEBAS Y VALIDACIÓN FINAL
+
+Ejecuta una comprobación integral:
+- Compilación de producción.
+- Rutas de todas las páginas.
+- Enlaces internos y externos.
+- Menú desktop y móvil.
+- Formularios.
+- Navegación.
+- Imágenes.
+- Video.
+- Responsive.
+- HTML.
+- JavaScript.
+- AJAX y APIs existentes.
+- Metadatos SEO.
+- Canonical.
+- Sitemap.
+- Robots.
+- Datos estructurados.
+- Seguridad de endpoints.
+- Dependencias.
+- Cabeceras.
+- Ausencia de errores de consola.
+
+Distingue claramente entre pruebas locales y verificaciones que requieren el sitio publicado.
+
+No afirmes que una vulnerabilidad está corregida si no has podido comprobarlo. No afirmes que el sitio está protegido al 100 %, porque ningún sistema conectado a Internet puede garantizar inmunidad absoluta.
+
+11. INFORME FINAL OBLIGATORIO
+
+Al terminar, presenta un informe profesional con:
+1. Estado general del proyecto.
+2. Resultado de la auditoría responsive.
+3. Resultado de la navegación y enlaces.
+4. Resultado de SEO e indexabilidad.
+5. Resultado de HTML, JavaScript y AJAX.
+6. Resultado de seguridad.
+7. Vulnerabilidades encontradas.
+8. Vulnerabilidades corregidas.
+9. Archivos modificados.
+10. Pruebas ejecutadas.
+11. Errores pendientes.
+12. Acciones que requieren configuración externa.
+13. Confirmación de que se conservó el diseño original.
+
+Utiliza estos estados:
+- VERIFICADO: comprobado mediante una prueba real.
+- CORREGIDO: problema solucionado y comprobado.
+- PENDIENTE: requiere intervención o acceso externo.
+- NO VERIFICABLE: no existen medios suficientes para comprobarlo.
+
+INSTRUCCIÓN FINAL
+
+Realiza una auditoría técnica, funcional, SEO y de ciberseguridad exhaustiva del proyecto CleyLawyerLegal.
+
+Tu prioridad es preservar exactamente el sitio existente y garantizar que sus páginas, componentes, enlaces, estilos, animaciones, formularios y configuraciones funcionen de forma coherente, segura y optimizada.
+
+No añadas nada. No rediseñes nada. No elimines nada que funcione.
+
+Corrige únicamente problemas demostrables, mediante cambios localizados, seguros y verificables.
+
+El resultado debe ser el mismo sitio web que ya tengo aprobado, pero técnicamente revisado, responsive, correctamente interconectado, optimizado para buscadores y con una postura de seguridad reforzada.

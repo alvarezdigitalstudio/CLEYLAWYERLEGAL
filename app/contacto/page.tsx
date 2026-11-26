@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { ContactSection } from '@/components/ContactSection';
+import { ProfessionalProtectionCard } from '@/components/ProfessionalProtectionCard';
 import { ReadingProgressBar } from '@/components/ReadingProgressBar';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteHeader } from '@/components/SiteHeader';
 import { BRAND_INFO } from '@/lib/legal-data';
-import { buildSocialMetadata, getSiteUrl } from '@/lib/seo-config';
+import { buildSocialMetadata, getSiteUrl, serializeJsonLd } from '@/lib/seo-config';
 
 export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
@@ -80,7 +81,7 @@ export default function ContactoPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <main className="flex-1">
@@ -115,6 +116,15 @@ export default function ContactoPage() {
         </section>
 
         <ContactSection headingText="Canales de atención directa" />
+
+        <section
+          aria-label="Marco de protección y relación profesional"
+          className="bg-[#FFFFFF] pb-16 md:pb-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <ProfessionalProtectionCard />
+          </div>
+        </section>
       </main>
 
       <SiteFooter />

@@ -18,7 +18,7 @@ import {
   type PracticeAreaDetail,
 } from '@/lib/legal-data';
 import { PRACTICE_AREA_IMAGES } from '@/lib/practice-images';
-import { buildPracticeAreaJsonLdGraph } from '@/lib/seo-config';
+import { buildPracticeAreaJsonLdGraph, serializeJsonLd } from '@/lib/seo-config';
 import { BrandLogo } from './BrandLogo';
 import { DynamicBackButton } from './DynamicBackButton';
 import { PracticeAreaViewTracker } from './PracticeAreaViewTracker';
@@ -49,7 +49,7 @@ export function PracticeAreaTemplate({
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <main className="flex-1 pb-24">
@@ -380,10 +380,9 @@ export function PracticeAreaTemplate({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedAreas.map((rel) => (
-                <Link
+                <article
                   key={rel.slug}
-                  href={`/${rel.slug}?from=areas`}
-                  className="bg-[#FFFFFF] border border-[#EEEEEE] p-6 flex flex-col justify-between hover:border-[#D99A19] transition-colors"
+                  className="group bg-[#FFFFFF] border border-[#EEEEEE] rounded-[4px] p-6 flex flex-col justify-between transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#D99A19] hover:shadow-[0_14px_30px_-14px_rgba(8,8,8,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                 >
                   <div>
                     <span className="text-xs font-semibold text-[#555555] tabular-nums">
@@ -396,11 +395,19 @@ export function PracticeAreaTemplate({
                       {rel.introDescription}
                     </p>
                   </div>
-                  <div className="mt-5 pt-3 border-t border-[#EEEEEE] inline-flex items-center gap-2 text-sm font-semibold text-[#080808]">
-                    <span>Explorar área</span>
-                    <ArrowRight className="w-4 h-4 text-[#D99A19]" aria-hidden="true" />
+                  <div className="mt-5 pt-4 border-t border-[#EEEEEE]">
+                    <Link
+                      href={`/${rel.slug}?from=areas`}
+                      className="inline-flex items-center justify-between gap-2 w-full min-h-[44px] px-4 py-2.5 bg-[#080808] text-[#FFFFFF] border border-[#D99A19]/80 rounded-[4px] text-sm font-semibold tracking-wide transition-colors duration-200 hover:bg-[#171717] hover:border-[#F2C45D] hover:text-[#F2C45D]"
+                    >
+                      <span>Conocer más</span>
+                      <ArrowRight
+                        className="w-4 h-4 text-[#D99A19] transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none"
+                        aria-hidden="true"
+                      />
+                    </Link>
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
           </div>

@@ -53,7 +53,7 @@ export function ReadingProgressBar() {
           type="button"
           onClick={scrollToTop}
           aria-label="Volver arriba"
-          className="fixed bottom-20 right-4 sm:right-6 z-30 w-11 h-11 bg-[#080808] text-[#F2C45D] border border-[#D99A19]/60 flex items-center justify-center hover:bg-[#D99A19] hover:text-[#FFFFFF] transition-colors cursor-pointer"
+          className="fixed bottom-[calc(5.25rem+var(--cley-cookie-mobile-offset,0px))] right-[max(1rem,env(safe-area-inset-right))] sm:bottom-24 sm:right-6 z-30 w-11 h-11 bg-[#080808] text-[#F2C45D] border border-[#D99A19]/60 flex items-center justify-center hover:bg-[#D99A19] hover:text-[#FFFFFF] transition-colors cursor-pointer"
         >
           <ArrowUp className="w-4 h-4" aria-hidden="true" />
         </button>

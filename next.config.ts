@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   // Allow access to remote image placeholder.
   images: {
     formats: ['image/avif', 'image/webp'],
+    qualities: [75, 100],
     remotePatterns: [
       {
         protocol: 'https',
@@ -24,10 +25,30 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   transpilePackages: ['motion'],
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+    const scriptSrc = isDev
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms"
+      : "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms";
+
+    const cspDirectives = [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "form-action 'self'",
+      "frame-ancestors 'self' https://aistudio.google.com https://*.aistudio.google.com https://*.googleusercontent.com",
+      "img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://c.clarity.ms",
+      "media-src 'self' blob:",
+      "font-src 'self' data:",
+      "style-src 'self' 'unsafe-inline'",
+      scriptSrc,
+      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.clarity.ms https://*.clarity.ms",
+    ].join('; ');
+
     return [
       {
         source: '/:path*',
         headers: [
+          { key: 'Content-Security-Policy', value: cspDirectives },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },

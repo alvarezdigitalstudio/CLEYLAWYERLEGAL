@@ -46,6 +46,7 @@ export async function GET() {
       : []),
     '',
     '## Información Legal y Privacidad',
+    `- Marco de Protección y Relación Profesional: ${siteUrl}/marco-de-proteccion-profesional`,
     `- Política de Privacidad: ${siteUrl}/politica-de-privacidad`,
     `- Aviso Legal: ${siteUrl}/aviso-legal`,
     `- Términos y Condiciones: ${siteUrl}/terminos-y-condiciones`,

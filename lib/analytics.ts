@@ -1,3 +1,4 @@
+import { hasAnalyticsConsentClient } from './privacy-consent';
 import { cleanEnvValue, type EnvLike } from './seo-config';
 
 const GTM_ID_PATTERN = /^GTM-[A-Z0-9]{5,12}$/i;
@@ -80,7 +81,7 @@ export function trackSxoEvent(
   eventName: SxoEventName,
   params: SxoEventContext | Record<string, unknown> = {},
 ): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !hasAnalyticsConsentClient()) return;
 
   const pagePath =
     typeof params.page_path === 'string' && params.page_path.trim().length > 0
